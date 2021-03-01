@@ -17,6 +17,15 @@
     "expirationTime" : "1 week",
     "storageLocation" : "Pantry",
     "quantity" : 5
+  },
+  {
+    "name" : "orange",
+    "imageName" : "orange.jpg",
+    "onShoppingList" : true,
+    "boughtItem" : false,
+    "expirationTime" : "2 months",
+    "storageLocation" : "Fridge",
+    "quantity" : 1
   }
 ]
 
