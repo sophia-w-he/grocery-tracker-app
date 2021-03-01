@@ -1,0 +1,23 @@
+[
+  {
+    "name" : "apple",
+    "imageName" : "apple.jpg",
+    "onShoppingList" : true,
+    "boughtItem" : false,
+    "expirationTime" : "1 month",
+    "storageLocation" : "Fridge",
+    "quantity" : 2
+    
+  },
+  {
+    "name" : "banana",
+    "imageName" : "banana.jpg",
+    "onShoppingList" : true,
+    "boughtItem" : false,
+    "expirationTime" : "1 week",
+    "storageLocation" : "Pantry",
+    "quantity" : 5
+  }
+]
+
+
