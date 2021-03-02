@@ -13,7 +13,10 @@ struct GroceryItem: Codable {
   var imageName: String                // "apple.jpg"
   var onShoppingList: Bool             // true
   var boughtItem: Bool                 // false
-  var expirationTime: String           // 1 month
+  var daysExpireTime: Int               // 0 days
+  var weeksExpireTime : Int            // 0 weeks
+  var monthsExpireTime: Int           // 1 month
+  var yearsExpireTime: Int            // 0 years
   var storageLocation: StorageLocation // fridge
   var quantity: Int
 

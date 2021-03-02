@@ -4,7 +4,10 @@
     "imageName" : "apple.jpg",
     "onShoppingList" : true,
     "boughtItem" : false,
-    "expirationTime" : "1 month",
+    "daysExpireTime" : 0,
+    "weeksExpireTime" : 0,
+    "monthsExpireTime" : 1,
+    "yearsExpireTime" : 0,
     "storageLocation" : "Fridge",
     "quantity" : 2
     
@@ -14,7 +17,10 @@
     "imageName" : "banana.jpg",
     "onShoppingList" : true,
     "boughtItem" : false,
-    "expirationTime" : "1 week",
+    "daysExpireTime" : 0,
+    "weeksExpireTime" : 1,
+    "monthsExpireTime" : 0,
+    "yearsExpireTime" : 0,
     "storageLocation" : "Pantry",
     "quantity" : 5
   },
@@ -23,7 +29,10 @@
     "imageName" : "orange.jpg",
     "onShoppingList" : true,
     "boughtItem" : false,
-    "expirationTime" : "2 months",
+    "daysExpireTime" : 0,
+    "weeksExpireTime" : 0,
+    "monthsExpireTime" : 2,
+    "yearsExpireTime" : 0,
     "storageLocation" : "Fridge",
     "quantity" : 1
   }

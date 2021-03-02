@@ -10,7 +10,7 @@ import Foundation
 struct BoughtItem: Codable {
   
   let groceryItem: GroceryItem
-  let expirationDate: String
+  let expirationDate: Date
   let quantity: Int
 
 }
