@@ -26,6 +26,7 @@ struct JSONDataView: View {
   var body: some View {
     
     TabView(selection: $selection) {
+      // might need to make binding or pass in model
       ShoppingListView(shoppingList: model.myShoppingList)
         .tabItem{ Text("Shopping List") }
         .tag(1)
