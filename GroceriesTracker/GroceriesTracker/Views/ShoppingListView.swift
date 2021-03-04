@@ -25,33 +25,39 @@ struct ShoppingListView: View {
   
   var body: some View {
     NavigationView {
-      List(shoppingList, id: \.name) { item in
-        NavigationLink(destination: GroceryItemView(item: item), label: {
-          GroceryItemRowView(item: item)
-        })
-      }
-      .navigationBarTitleDisplayMode(.inline)
-      //.navigationTitle("Shopping List")
-        //.background(NavigationConfigurator { nc in
-        //  nc.navigationBar.barTintColor = .blue
-        //  nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
-        //})
-        .toolbar { // <2>
-            ToolbarItem(placement: .principal) { // <3>
-                VStack {
-                  Spacer()
-                  Text("Shopping List").font(.system(size: 30, design: .serif))
-                  Spacer()
-                  Spacer()
-                  
+      ZStack {
+        RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
+        VStack {
+          List(shoppingList, id: \.name) { item in
+            NavigationLink(destination: GroceryItemView(item: item), label: {
+              GroceryItemRowView(item: item)
+            })
+          }
+          .navigationBarTitleDisplayMode(.inline)
+          //.navigationTitle("Shopping List")
+            //.background(NavigationConfigurator { nc in
+            //  nc.navigationBar.barTintColor = .blue
+            //  nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
+            //})
+            .toolbar { // <2>
+                ToolbarItem(placement: .principal) { // <3>
+                    VStack {
+                      Spacer()
+                      Text("Shopping List").font(.system(size: 30, design: .serif))
+                      Spacer()
+                      Spacer()
+                      
+                    }
                 }
             }
+            .navigationBarItems(trailing: Button("Add") {
+                self.isAddSheetShowing.toggle()
+            }).sheet(isPresented: self.$isAddSheetShowing, content: {
+              AddShoppingListItemView(shoppingList: $shoppingList)
+            })
         }
-        .navigationBarItems(trailing: Button("Add") {
-            self.isAddSheetShowing.toggle()
-        }).sheet(isPresented: self.$isAddSheetShowing, content: {
-          AddShoppingListItemView(shoppingList: $shoppingList)
-        })
+        
+      }.edgesIgnoringSafeArea(.all)
     }
   }
 }
@@ -104,6 +110,7 @@ struct GroceryItemView: View {
   }
   
   var body: some View {
+    
     VStack {
       Image(item.imageName)
         .resizable()
@@ -166,80 +173,84 @@ struct AddShoppingListItemView: View {
   
   var body: some View {
     if !itemSubmitted {
-      Text("Add Item").font(.system(size: 30, design: .serif))
-      VStack(alignment: .leading, spacing: 20) {
-        HStack {
-          Text("Item Name: ")
-          Spacer()
-          TextField("Item Name", text: $name)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-          Spacer(minLength: 50)
-        }
-        HStack {
-          // TODO: Use picker for quantity
-          Text("Quantity: ")
-          Spacer()
-          TextField("Quantity", text: $quantity)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .keyboardType(.numberPad)
-            .onReceive(Just(quantity)) { newValue in
-                  let filtered = newValue.filter { "0123456789".contains($0) }
-                  if filtered != newValue {
-                      self.quantity = filtered
-                  }
-          }
-          Spacer(minLength: 50)
-        }
-        HStack {
-          Text("Stored In: ")
-          Menu {
-            Button {
-              storageLocation = .Fridge
-              storage = "Fridge"
-            } label: {
-              Text("Fridge")
-              //Image(systemName: "arrow.down.right.circle")
-            }
-            Button {
-              storageLocation = .Freezer
-              storage = "Freezer"
-            } label: {
-              Text("Freezer")
-              //Image(systemName: "arrow.up.and.down.circle")
-            }
-            Button {
-              storageLocation = .Pantry
-              storage = "Pantry"
-            } label: {
-              Text("Pantry")
-              //Image(systemName: "arrow.up.and.down.circle")
-            }
-          } label: {
+      ZStack {
+        RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
+        VStack {
+          Text("Add Item").font(.system(size: 30, design: .serif)).fontWeight(.bold)
+          VStack(alignment: .leading, spacing: 20) {
             HStack {
-              Image(systemName: "plus.circle")
-              //TextField("Stored In", text: storage)
-              //  .textFieldStyle(RoundedBorderTextFieldStyle())
-              Text(storage)
+              Text("Item Name: ")
+              Spacer()
+              TextField("Item Name", text: $name)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+              Spacer(minLength: 50)
             }
-          }
-          Spacer(minLength: 50)
+            HStack {
+              // TODO: Use picker for quantity
+              Text("Quantity: ")
+              Spacer()
+              TextField("Quantity", text: $quantity)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .keyboardType(.numberPad)
+                .onReceive(Just(quantity)) { newValue in
+                      let filtered = newValue.filter { "0123456789".contains($0) }
+                      if filtered != newValue {
+                          self.quantity = filtered
+                      }
+              }
+              Spacer(minLength: 50)
+            }
+            HStack {
+              Text("Stored In: ")
+              Menu {
+                Button {
+                  storageLocation = .Fridge
+                  storage = "Fridge"
+                } label: {
+                  Text("Fridge")
+                  //Image(systemName: "arrow.down.right.circle")
+                }
+                Button {
+                  storageLocation = .Freezer
+                  storage = "Freezer"
+                } label: {
+                  Text("Freezer")
+                  //Image(systemName: "arrow.up.and.down.circle")
+                }
+                Button {
+                  storageLocation = .Pantry
+                  storage = "Pantry"
+                } label: {
+                  Text("Pantry")
+                  //Image(systemName: "arrow.up.and.down.circle")
+                }
+              } label: {
+                HStack {
+                  Image(systemName: "plus.circle")
+                  //TextField("Stored In", text: storage)
+                  //  .textFieldStyle(RoundedBorderTextFieldStyle())
+                  Text(storage)
+                }
+              }
+              Spacer(minLength: 50)
+            }
+            HStack {
+              // TODO: Use picker for expiration times
+            }
+            HStack {
+              // TODO: Upload image somehow
+            }
+          }.padding(.horizontal, 20)
+          Button(action: {
+            // submit action
+            self.itemSubmitted.toggle()
+            let groc = GroceryItem(name: name, imageName: "", onShoppingList: onShoppingList, boughtItem: boughtItem, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0)
+            shoppingList.append(groc)
+          }, label: {
+            Text("Add")
+          })
         }
-        HStack {
-          // TODO: Use picker for expiration times
-        }
-        HStack {
-          // TODO: Upload image somehow
-        }
-      }.padding(.horizontal, 20)
-      Button(action: {
-        // submit action
-        self.itemSubmitted.toggle()
-        let groc = GroceryItem(name: name, imageName: "", onShoppingList: onShoppingList, boughtItem: boughtItem, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0)
-        shoppingList.append(groc)
-      }, label: {
-        Text("Add")
-      })
-      
+      }.edgesIgnoringSafeArea(.all)
     } else {
       Text("test")
     }
