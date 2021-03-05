@@ -301,7 +301,7 @@ struct AddShoppingListItemView: View {
                   }
                 } label: {
                   HStack {
-                    Image(systemName: "plus.circle")
+                    Image(systemName: "plus.circle") 
                     Text(timeDescriptor)
                   }
                 }
