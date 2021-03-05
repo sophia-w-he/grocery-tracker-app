@@ -191,7 +191,6 @@ struct AddShoppingListItemView: View {
             }
             VStack(alignment: .leading) {
               HStack {
-                //Text("Item Name: ")
                 Spacer()
                 TextField("Item Name", text: $name)
                   .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -199,7 +198,6 @@ struct AddShoppingListItemView: View {
               }
               HStack {
                 // TODO: Use picker for quantity
-                //Text("Quantity: ")
                 Spacer()
                 TextField("Quantity", text: $quantity)
                   .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -213,8 +211,6 @@ struct AddShoppingListItemView: View {
                 Spacer(minLength: 25)
               }
               HStack {
-                //Text("Stored In: ")
-                //Spacer(minLength: 5)
                 Menu {
                   Button {
                     storageLocation = .Fridge
@@ -241,8 +237,6 @@ struct AddShoppingListItemView: View {
                   HStack {
                     Spacer()
                     Image(systemName: "plus.circle")
-                    //TextField("Stored In", text: storage)
-                    //  .textFieldStyle(RoundedBorderTextFieldStyle())
                     Text(storage)
                   }
                 }
@@ -250,7 +244,6 @@ struct AddShoppingListItemView: View {
               }
               HStack {
                 // TODO: Use picker for expiration times
-                //Text("Expires In: ")
                 Spacer()
                 TextField("Qty", text: $qtyExpire)
                   .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -309,8 +302,6 @@ struct AddShoppingListItemView: View {
                 } label: {
                   HStack {
                     Image(systemName: "plus.circle")
-                    //TextField("Stored In", text: storage)
-                    //  .textFieldStyle(RoundedBorderTextFieldStyle())
                     Text(timeDescriptor)
                   }
                 }
