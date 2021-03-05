@@ -164,91 +164,178 @@ struct AddShoppingListItemView: View {
   @State private var yearsExpireTime: Int = 0
   @State private var storageLocation: StorageLocation = .Fridge
   @State private var quantity: String = "0"
+  @State private var qtyExpire: String = "0"
   
   @State private var itemSubmitted: Bool = false
   
   var storageList: [StorageLocation] = [.Fridge, .Pantry, .Freezer]
   
   @State private var storage = ""
+  @State private var timeDescriptor = ""
   
   var body: some View {
     if !itemSubmitted {
       ZStack {
-        RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
+        //RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
+        LinearGradient(gradient: Gradient(colors: [.blue, .white, .green]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        //AngularGradient(gradient: Gradient(colors: [.green, .blue, .black, .green, .blue, .black, .green]), center: .center)
         VStack {
           Text("Add Item").font(.system(size: 30, design: .serif)).fontWeight(.bold)
-          VStack(alignment: .leading, spacing: 20) {
-            HStack {
-              Text("Item Name: ")
-              Spacer()
-              TextField("Item Name", text: $name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-              Spacer(minLength: 50)
+          HStack {
+            VStack(alignment: .leading) {
+              Text("Item Name: ").frame(maxHeight: .infinity).padding(.bottom, 4)
+              Text("Quantity: ").frame(maxHeight: .infinity).padding(.bottom, 4)
+              Text("Stored In: ").frame(maxHeight: .infinity).padding(.bottom, 4)
+              Text("Expires In: ").frame(maxHeight: .infinity).padding(.bottom, 4)
+              
             }
-            HStack {
-              // TODO: Use picker for quantity
-              Text("Quantity: ")
-              Spacer()
-              TextField("Quantity", text: $quantity)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .keyboardType(.numberPad)
-                .onReceive(Just(quantity)) { newValue in
-                      let filtered = newValue.filter { "0123456789".contains($0) }
-                      if filtered != newValue {
-                          self.quantity = filtered
-                      }
+            VStack(alignment: .leading) {
+              HStack {
+                //Text("Item Name: ")
+                Spacer()
+                TextField("Item Name", text: $name)
+                  .textFieldStyle(RoundedBorderTextFieldStyle())
+                Spacer(minLength: 25)
               }
-              Spacer(minLength: 50)
-            }
-            HStack {
-              Text("Stored In: ")
-              Menu {
-                Button {
-                  storageLocation = .Fridge
-                  storage = "Fridge"
-                } label: {
-                  Text("Fridge")
-                  //Image(systemName: "arrow.down.right.circle")
+              HStack {
+                // TODO: Use picker for quantity
+                //Text("Quantity: ")
+                Spacer()
+                TextField("Quantity", text: $quantity)
+                  .textFieldStyle(RoundedBorderTextFieldStyle())
+                  .keyboardType(.numberPad)
+                  .onReceive(Just(quantity)) { newValue in
+                        let filtered = newValue.filter { "0123456789".contains($0) }
+                        if filtered != newValue {
+                            self.quantity = filtered
+                        }
                 }
-                Button {
-                  storageLocation = .Freezer
-                  storage = "Freezer"
-                } label: {
-                  Text("Freezer")
-                  //Image(systemName: "arrow.up.and.down.circle")
-                }
-                Button {
-                  storageLocation = .Pantry
-                  storage = "Pantry"
-                } label: {
-                  Text("Pantry")
-                  //Image(systemName: "arrow.up.and.down.circle")
-                }
-              } label: {
-                HStack {
-                  Image(systemName: "plus.circle")
-                  //TextField("Stored In", text: storage)
-                  //  .textFieldStyle(RoundedBorderTextFieldStyle())
-                  Text(storage)
-                }
+                Spacer(minLength: 25)
               }
-              Spacer(minLength: 50)
-            }
-            HStack {
-              // TODO: Use picker for expiration times
-            }
-            HStack {
-              // TODO: Upload image somehow
-            }
-          }.padding(.horizontal, 20)
-          Button(action: {
-            // submit action
-            self.itemSubmitted.toggle()
-            let groc = GroceryItem(name: name, imageName: "", onShoppingList: onShoppingList, boughtItem: boughtItem, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0)
-            shoppingList.append(groc)
-          }, label: {
-            Text("Add")
-          })
+              HStack {
+                //Text("Stored In: ")
+                //Spacer(minLength: 5)
+                Menu {
+                  Button {
+                    storageLocation = .Fridge
+                    storage = "Fridge"
+                  } label: {
+                    Text("Fridge")
+                    //Image(systemName: "arrow.down.right.circle")
+                  }
+                  Button {
+                    storageLocation = .Freezer
+                    storage = "Freezer"
+                  } label: {
+                    Text("Freezer")
+                    //Image(systemName: "arrow.up.and.down.circle")
+                  }
+                  Button {
+                    storageLocation = .Pantry
+                    storage = "Pantry"
+                  } label: {
+                    Text("Pantry")
+                    //Image(systemName: "arrow.up.and.down.circle")
+                  }
+                } label: {
+                  HStack {
+                    Spacer()
+                    Image(systemName: "plus.circle")
+                    //TextField("Stored In", text: storage)
+                    //  .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Text(storage)
+                  }
+                }
+                Spacer(minLength: 25)
+              }
+              HStack {
+                // TODO: Use picker for expiration times
+                //Text("Expires In: ")
+                Spacer()
+                TextField("Qty", text: $qtyExpire)
+                  .textFieldStyle(RoundedBorderTextFieldStyle())
+                  .keyboardType(.numberPad)
+                  .onReceive(Just(quantity)) { newValue in
+                        let filtered = newValue.filter { "0123456789".contains($0) }
+                        if filtered != newValue {
+                            self.quantity = filtered
+                        }
+                }
+                Menu {
+                  Button {
+                    weeksExpireTime = 0
+                    monthsExpireTime = 0
+                    yearsExpireTime = 0
+                    daysExpireTime = Int(qtyExpire) ?? 0
+                    if daysExpireTime == 1 {
+                      timeDescriptor = "Day"
+                    } else { timeDescriptor = "Days" }
+                  } label: {
+                    Text("Days")
+                  }
+                  Button {
+                    daysExpireTime = 0
+                    monthsExpireTime = 0
+                    yearsExpireTime = 0
+                    weeksExpireTime = Int(qtyExpire) ?? 0
+                    if weeksExpireTime == 1 {
+                      timeDescriptor = "Week"
+                    } else { timeDescriptor = "Weeks" }
+                  } label: {
+                    Text("Weeks")
+                  }
+                  Button {
+                    daysExpireTime = 0
+                    weeksExpireTime = 0
+                    yearsExpireTime = 0
+                    monthsExpireTime = Int(qtyExpire) ?? 0
+                    if monthsExpireTime == 1 {
+                      timeDescriptor = "Month"
+                    } else { timeDescriptor = "Months" }
+                  } label: {
+                    Text("Months")
+                  }
+                  Button {
+                    daysExpireTime = 0
+                    weeksExpireTime = 0
+                    monthsExpireTime = 0
+                    yearsExpireTime = Int(qtyExpire) ?? 0
+                    if yearsExpireTime == 1 {
+                      timeDescriptor = "Year"
+                    } else { timeDescriptor = "Years" }
+                  } label: {
+                    Text("Years")
+                  }
+                } label: {
+                  HStack {
+                    Image(systemName: "plus.circle")
+                    //TextField("Stored In", text: storage)
+                    //  .textFieldStyle(RoundedBorderTextFieldStyle())
+                    Text(timeDescriptor)
+                  }
+                }
+                Spacer(minLength: 25)
+              }
+              HStack {
+                // TODO: Upload image somehow
+              }
+              
+            }.padding(.leading)
+            
+          }.padding(.horizontal)
+          .fixedSize(horizontal: false, vertical: true)
+          VStack {
+            //Spacer(minLength: 5)
+            Button(action: {
+              // submit action
+              self.itemSubmitted.toggle()
+              let groc = GroceryItem(name: name, imageName: "", onShoppingList: onShoppingList, boughtItem: boughtItem, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0)
+              shoppingList.append(groc)
+            }, label: {
+              Text("Add")
+            })
+          }.padding(.vertical)
+          .fixedSize(horizontal: false, vertical: true)
         }
       }.edgesIgnoringSafeArea(.all)
     } else {
