@@ -24,6 +24,8 @@
 		EC32447425EC7DFE00C6843C /* BoughtItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32447325EC7DFE00C6843C /* BoughtItem.swift */; };
 		EC32447D25EC8AC300C6843C /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32447C25EC8AC300C6843C /* ShoppingListView.swift */; };
 		EC32448225EC8EF400C6843C /* MyGroceryTrackerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32448125EC8EF400C6843C /* MyGroceryTrackerModel.swift */; };
+		ECE1A32425F1CF1A009BE1AF /* AddShoppingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */; };
+		ECE1A32925F1D00A009BE1AF /* GroceryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		EC32447325EC7DFE00C6843C /* BoughtItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoughtItem.swift; sourceTree = "<group>"; };
 		EC32447C25EC8AC300C6843C /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		EC32448125EC8EF400C6843C /* MyGroceryTrackerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroceryTrackerModel.swift; sourceTree = "<group>"; };
+		ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShoppingListItemView.swift; sourceTree = "<group>"; };
+		ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				EC32447C25EC8AC300C6843C /* ShoppingListView.swift */,
+				ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */,
+				ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -338,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC32446425E70A7400C6843C /* PersonalGroceryTrackerModel.swift in Sources */,
+				ECE1A32925F1D00A009BE1AF /* GroceryItemView.swift in Sources */,
 				EC32447D25EC8AC300C6843C /* ShoppingListView.swift in Sources */,
 				EC32443F25E702D400C6843C /* GroceryItem.swift in Sources */,
 				EC32444825E7035700C6843C /* Item+CoreData.swift in Sources */,
@@ -345,6 +352,7 @@
 				EC32440F25E701B500C6843C /* GroceriesTracker.xcdatamodeld in Sources */,
 				EC32440C25E701B500C6843C /* Persistence.swift in Sources */,
 				EC32440525E701B000C6843C /* ContentView.swift in Sources */,
+				ECE1A32425F1CF1A009BE1AF /* AddShoppingListItemView.swift in Sources */,
 				EC32446925E70C2300C6843C /* Recipe.swift in Sources */,
 				EC32440325E701B000C6843C /* GroceriesTrackerApp.swift in Sources */,
 				EC32445325E706DA00C6843C /* StorageLocation.swift in Sources */,
