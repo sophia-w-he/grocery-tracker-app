@@ -30,6 +30,9 @@ struct JSONDataView: View {
       ShoppingListView(shoppingList: model.myShoppingList)
         .tabItem{ Text("Shopping List") }
         .tag(1)
+      FridgeView(fridge: model.myFridge)
+        .tabItem{ Text("Fridge") }
+        .tag(2)
       
       /*CourseClassView(courseClass: model.schoolClasses[0])
         .tabItem{ Text("Class") }

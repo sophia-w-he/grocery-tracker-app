@@ -26,6 +26,9 @@
 		EC32448225EC8EF400C6843C /* MyGroceryTrackerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32448125EC8EF400C6843C /* MyGroceryTrackerModel.swift */; };
 		ECE1A32425F1CF1A009BE1AF /* AddShoppingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */; };
 		ECE1A32925F1D00A009BE1AF /* GroceryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */; };
+		ECFFE61C2606D15100605A4F /* FridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFE61B2606D15100605A4F /* FridgeView.swift */; };
+		ECFFE6212606D70600605A4F /* AddFridgeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFE6202606D70600605A4F /* AddFridgeItemView.swift */; };
+		ECFFE6262606DADA00605A4F /* BoughtItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFE6252606DADA00605A4F /* BoughtItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		EC32448125EC8EF400C6843C /* MyGroceryTrackerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroceryTrackerModel.swift; sourceTree = "<group>"; };
 		ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShoppingListItemView.swift; sourceTree = "<group>"; };
 		ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItemView.swift; sourceTree = "<group>"; };
+		ECFFE61B2606D15100605A4F /* FridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeView.swift; sourceTree = "<group>"; };
+		ECFFE6202606D70600605A4F /* AddFridgeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFridgeItemView.swift; sourceTree = "<group>"; };
+		ECFFE6252606DADA00605A4F /* BoughtItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoughtItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,7 +214,10 @@
 			children = (
 				EC32447C25EC8AC300C6843C /* ShoppingListView.swift */,
 				ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */,
+				ECFFE6252606DADA00605A4F /* BoughtItemView.swift */,
 				ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */,
+				ECFFE61B2606D15100605A4F /* FridgeView.swift */,
+				ECFFE6202606D70600605A4F /* AddFridgeItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -345,9 +354,12 @@
 			files = (
 				EC32446425E70A7400C6843C /* PersonalGroceryTrackerModel.swift in Sources */,
 				ECE1A32925F1D00A009BE1AF /* GroceryItemView.swift in Sources */,
+				ECFFE6262606DADA00605A4F /* BoughtItemView.swift in Sources */,
 				EC32447D25EC8AC300C6843C /* ShoppingListView.swift in Sources */,
 				EC32443F25E702D400C6843C /* GroceryItem.swift in Sources */,
 				EC32444825E7035700C6843C /* Item+CoreData.swift in Sources */,
+				ECFFE61C2606D15100605A4F /* FridgeView.swift in Sources */,
+				ECFFE6212606D70600605A4F /* AddFridgeItemView.swift in Sources */,
 				EC32448225EC8EF400C6843C /* MyGroceryTrackerModel.swift in Sources */,
 				EC32440F25E701B500C6843C /* GroceriesTracker.xcdatamodeld in Sources */,
 				EC32440C25E701B500C6843C /* Persistence.swift in Sources */,

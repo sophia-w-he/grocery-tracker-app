@@ -1,8 +1,8 @@
 //
-//  AddShoppingListItemView.swift
+//  AddFridgeItemView.swift
 //  GroceriesTracker
 //
-//  Created by Sophia on 3/4/21.
+//  Created by Sophia on 3/20/21.
 //
 
 import Foundation
@@ -10,8 +10,8 @@ import SwiftUI
 import Combine
 
 
-struct AddShoppingListItemView: View {
-  @Binding var shoppingList:[GroceryItem]
+struct AddFridgeItemView: View {
+  @Binding var fridge:[BoughtItem]
   
   @State private var name: String = ""
   @State private var imageName: String = ""
@@ -180,7 +180,8 @@ struct AddShoppingListItemView: View {
               // submit action
               self.itemSubmitted.toggle()
               let groc = GroceryItem(name: name, imageName: "", onShoppingList: onShoppingList, boughtItem: boughtItem, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0)
-              shoppingList.append(groc)
+              let bought = BoughtItem(groceryItem: groc)
+              fridge.append(bought)
             }, label: {
               Text("Add")
             })
@@ -193,16 +194,3 @@ struct AddShoppingListItemView: View {
     }
   }
 }
-
-/*
- "name" : "banana",
- "imageName" : "banana.jpg",
- "onShoppingList" : true,
- "boughtItem" : false,
- "daysExpireTime" : 0,
- "weeksExpireTime" : 1,
- "monthsExpireTime" : 0,
- "yearsExpireTime" : 0,
- "storageLocation" : "Pantry",
- "quantity" : 5
- */

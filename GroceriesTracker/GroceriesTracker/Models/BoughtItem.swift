@@ -7,10 +7,23 @@
 
 import Foundation
 
-struct BoughtItem: Codable {
+struct BoughtItem {
   
   let groceryItem: GroceryItem
-  let expirationDate: Date
-  let quantity: Int
+  var expirationDate: Date
+  
+  init(groceryItem: GroceryItem) {
+    self.groceryItem = groceryItem
+    
+    let currentDate = Date()
+    var dateComponent = DateComponents()
+    dateComponent.month = groceryItem.monthsExpireTime
+    dateComponent.day = groceryItem.daysExpireTime + (groceryItem.weeksExpireTime * 7)
+    dateComponent.year = groceryItem.yearsExpireTime
+    let futureDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
+    print(currentDate)
+    print(futureDate!)
+    self.expirationDate = futureDate!
+  }
 
 }
