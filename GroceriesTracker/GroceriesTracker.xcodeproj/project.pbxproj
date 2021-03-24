@@ -204,7 +204,6 @@
 		EC32445A25E707BD00C6843C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				EC32445B25E7086400C6843C /* groceries.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -212,6 +211,7 @@
 		EC32447B25EC8A7B00C6843C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EC32445B25E7086400C6843C /* groceries.json */,
 				EC32447C25EC8AC300C6843C /* ShoppingListView.swift */,
 				ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */,
 				ECFFE6252606DADA00605A4F /* BoughtItemView.swift */,

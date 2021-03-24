@@ -179,7 +179,7 @@ struct AddShoppingListItemView: View {
             Button(action: {
               // submit action
               self.itemSubmitted.toggle()
-              let groc = GroceryItem(name: name, imageName: "", onShoppingList: onShoppingList, boughtItem: boughtItem, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0)
+              let groc = GroceryItem(name: name, imageName: "", daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0)
               shoppingList.append(groc)
             }, label: {
               Text("Add")
