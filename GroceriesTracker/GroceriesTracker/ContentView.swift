@@ -23,16 +23,43 @@ struct JSONDataView: View {
   @Binding var selection: Int
   @Binding var model: PersonalGroceryTrackerModel
   
+  @Binding var shoppingList: [GroceryItem]
+  @Binding var fridge: [BoughtItem]
+  @Binding var freezer: [BoughtItem]
+  @Binding var pantry: [BoughtItem]
+  
+  //init(selection: Binding<Int>, model: Binding<PersonalGroceryTrackerModel>, shoppingList: Binding<[GroceryItem]>, fridge: Binding<[BoughtItem]>, freezer: Binding<[BoughtItem]>, pantry: Binding<[BoughtItem]>) {
+  init(selection: Binding<Int>, model: Binding<PersonalGroceryTrackerModel>) {
+    self._selection = selection
+    self._model = model
+    
+    /*self._shoppingList = shoppingList
+    self._fridge = fridge
+    self._freezer = freezer
+    self._pantry = pantry*/
+    
+    self._shoppingList = model.myShoppingList
+    self._fridge = model.myFridge
+    self._freezer = model.myFreezer
+    self._pantry = model.myPantry
+  }
+  
   var body: some View {
     
     TabView(selection: $selection) {
       // might need to make binding or pass in model
-      ShoppingListView(shoppingList: model.myShoppingList)
+      ShoppingListView(shoppingList: $shoppingList, fridge: $fridge, freezer: $freezer, pantry: $pantry)
         .tabItem{ Text("Shopping List") }
         .tag(1)
-      FridgeView(fridge: model.myFridge)
+      FridgeView(fridge: $fridge)
         .tabItem{ Text("Fridge") }
         .tag(2)
+      FreezerView(freezer: $freezer)
+        .tabItem{ Text("Freezer") }
+        .tag(3)
+      PantryView(pantry: $pantry)
+        .tabItem{ Text("Pantry") }
+        .tag(4)
       
       /*CourseClassView(courseClass: model.schoolClasses[0])
         .tabItem{ Text("Class") }
@@ -55,7 +82,31 @@ struct JSONDataView: View {
 struct CoreDataView: View {
   //TODO
   @State var selection = 1
+  @Binding var model: PersonalGroceryTrackerModel
+  @Environment(\.managedObjectContext) var context
+  
+  @FetchRequest(
+    entity: GroceryItemEntity.entity(),
+    sortDescriptors: [
+      NSSortDescriptor(keyPath: \GroceryItemEntity.name, ascending: true),
+  ]) var groceryItems: FetchedResults<GroceryItemEntity>
+  
+  @FetchRequest(
+    entity: BoughtItemEntity.entity(),
+    sortDescriptors: [
+      NSSortDescriptor(keyPath: \BoughtItemEntity.expirationDate, ascending: true),
+  ]) var boughtItems: FetchedResults<BoughtItemEntity>
+  
+  @FetchRequest(
+    entity: RecipeEntity.entity(),
+    sortDescriptors: [
+      NSSortDescriptor(keyPath: \RecipeEntity.name, ascending: true),
+  ]) var recipes: FetchedResults<RecipeEntity>
+  
   var body: some View {
+    let boughtItemEntity = BoughtItemEntity()
+    let groceryItemEntity = GroceryItemEntity()
+    let recipeEntity = RecipeEntity()
     TabView(selection: $selection) {
     }
   }

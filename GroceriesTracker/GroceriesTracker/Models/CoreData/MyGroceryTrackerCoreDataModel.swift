@@ -10,7 +10,27 @@ import SwiftUI
 import CoreData
 
 struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
-  var myShoppingList: [GroceryItem] { return [] }
+  var myShoppingList: [GroceryItem]
+  
+  var myFridge: [BoughtItem]
+  
+  var myFreezer: [BoughtItem]
+  
+  var myPantry: [BoughtItem]
+  
+  var myRecipes: [Recipe]
+  
+  /*var myShoppingList: [GroceryItem]
+  
+  var myFridge: [BoughtItem]
+  
+  var myFreezer: [BoughtItem]
+  
+  var myPantry: [BoughtItem]
+  
+  var myRecipes: [Recipe]*/
+  
+  /*var myShoppingList: [GroceryItem] { return [] }
   
   var myFridge: [BoughtItem] { return [] }
   
@@ -18,7 +38,7 @@ struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
   
   var myPantry: [BoughtItem] { return [] }
   
-  var myRecipes: [Recipe] { return [] }
+  var myRecipes: [Recipe] { return [] }*/
   
   static var context = PersistenceController.shared.container.viewContext
   let testData = GroceryTrackerModelTestData()

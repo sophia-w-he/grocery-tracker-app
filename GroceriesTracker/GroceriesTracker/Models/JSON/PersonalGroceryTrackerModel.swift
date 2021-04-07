@@ -8,9 +8,9 @@
 import Foundation
 
 protocol PersonalGroceryTrackerModel {
-  var myShoppingList: [GroceryItem] { get }
-  var myFridge: [BoughtItem] { get }
-  var myFreezer: [BoughtItem] { get }
-  var myPantry: [BoughtItem] { get }
-  var myRecipes: [Recipe] { get }
+  var myShoppingList: [GroceryItem] { get set }
+  var myFridge: [BoughtItem] { get set }
+  var myFreezer: [BoughtItem] { get set }
+  var myPantry: [BoughtItem] { get set }
+  var myRecipes: [Recipe] { get set }
 }

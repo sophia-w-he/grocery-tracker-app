@@ -10,8 +10,21 @@ import SwiftUI
 import Combine
 
 struct ShoppingListView: View {
-  @State var shoppingList: [GroceryItem]
+  @Binding var shoppingList: [GroceryItem]
+  
+  @Binding var fridge: [BoughtItem]
+  @Binding var freezer: [BoughtItem]
+  @Binding var pantry: [BoughtItem]
+  
   @State private var isAddSheetShowing = false
+  @State private var itemsToAdd = Set<String>()
+  @State var isEditMode: EditMode = .active
+  
+  @State var isEditing = false
+  @State var selection = Set<String>()
+  
+  // TODO CHANGE THIS FOR CORE DATA
+  var dataModel = testModel
   
   /*init() {
     self.shoppingList = shoppingList
@@ -28,11 +41,13 @@ struct ShoppingListView: View {
       ZStack {
         RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
         VStack {
-          List(shoppingList, id: \.name) { item in
+          List(shoppingList, id: \.name, selection: $itemsToAdd) { item in
             NavigationLink(destination: GroceryItemView(item: item), label: {
               GroceryItemRowView(item: item)
             })
           }
+          //.environment(\.editMode, self.$isEditMode)
+          .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive))
           .navigationBarTitleDisplayMode(.inline)
           //.navigationTitle("Shopping List")
             //.background(NavigationConfigurator { nc in
@@ -43,14 +58,43 @@ struct ShoppingListView: View {
                 ToolbarItem(placement: .principal) { // <3>
                     VStack {
                       Spacer()
-                      Text("Shopping List").font(.system(size: 30, design: .serif))
+                      Text("Shopping List").font(.system(size: 25, design: .serif))
                       Spacer()
                       Spacer()
                       
                     }
                 }
             }
-            .navigationBarItems(trailing: Button("Add") {
+          .navigationBarItems(leading:
+                                Button(isEditing ? "Check Off" : "Edit") {
+                                  if !isEditing {
+                                    self.isEditing.toggle()
+                                  }else {
+                                    itemsToAdd.forEach(){ item in
+                                      print(itemsToAdd)
+                                      // TODO CHANGE THIS FOR CORE DATA
+                                      let grocIndex = shoppingList.firstIndex(where: { $0.name ==  item})
+                                      let groc = shoppingList[grocIndex!]
+                                      let bought = BoughtItem(groceryItem: groc)
+                                      if groc.storageLocation == .Fridge {
+                                        fridge.append(bought)
+                                      } else if groc.storageLocation == .Freezer {
+                                        freezer.append(bought)
+                                      } else if groc.storageLocation == .Pantry {
+                                        pantry.append(bought)
+                                      }
+                              
+                                      shoppingList.remove(at:grocIndex!)
+                                      let itemIndex = itemsToAdd.firstIndex(of: item)
+                                      itemsToAdd.remove(at:itemIndex!)
+                                      
+                                      
+                                      //dataModel.assignStudent(student: username, toCourseClass: selectedClass)
+                                    }
+                                    self.isEditing.toggle()
+                                  }
+                                },
+                              trailing: Button("Add Item") {
                 self.isAddSheetShowing.toggle()
             }).sheet(isPresented: self.$isAddSheetShowing, content: {
               AddShoppingListItemView(shoppingList: $shoppingList)

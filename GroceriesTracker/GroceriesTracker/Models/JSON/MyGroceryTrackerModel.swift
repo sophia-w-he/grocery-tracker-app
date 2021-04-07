@@ -16,6 +16,13 @@ struct MyGroceryTrackerModel: PersonalGroceryTrackerModel {
   var myFreezer: [BoughtItem]
   var myPantry: [BoughtItem]
   var myRecipes: [Recipe]
+  
+  mutating func addToFridge(bought: BoughtItem) { 
+    myFridge.append(bought)
+    /*if let index = myShoppingList.firstIndex(of: bought.groceryItem) {
+        myShoppingList.remove(at: index)
+    }*/
+  } 
 
 }
 
@@ -34,6 +41,7 @@ struct GroceryTrackerModelTestData {
     myPantry = []
     myRecipes = []
   }
+  
   // JSONDecoder documentation on apple.com used to create this method
   // DecodingError documentation on apple.com used for error handling
   func decode<T: Decodable>(_ type: T.Type, from file: String) -> T {
@@ -65,6 +73,6 @@ struct GroceryTrackerModelTestData {
 }
 
 
-let testData = GroceryTrackerModelTestData()
-let testModel = MyGroceryTrackerModel(myShoppingList: testData.myShoppingList!, myFridge: testData.myFridge!, myFreezer: testData.myFreezer!, myPantry: testData.myPantry!, myRecipes: testData.myRecipes!)
+var testData = GroceryTrackerModelTestData()
+var testModel = MyGroceryTrackerModel(myShoppingList: testData.myShoppingList!, myFridge: testData.myFridge!, myFreezer: testData.myFreezer!, myPantry: testData.myPantry!, myRecipes: testData.myRecipes!)
 
