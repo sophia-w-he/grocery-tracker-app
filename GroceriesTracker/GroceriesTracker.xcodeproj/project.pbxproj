@@ -16,7 +16,6 @@
 		EC32441A25E701B500C6843C /* GroceriesTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32441925E701B500C6843C /* GroceriesTrackerTests.swift */; };
 		EC32442525E701B500C6843C /* GroceriesTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32442425E701B500C6843C /* GroceriesTrackerUITests.swift */; };
 		EC32443F25E702D400C6843C /* GroceryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32443E25E702D400C6843C /* GroceryItem.swift */; };
-		EC32444825E7035700C6843C /* Item+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32444725E7035700C6843C /* Item+CoreData.swift */; };
 		EC32445325E706DA00C6843C /* StorageLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32445225E706DA00C6843C /* StorageLocation.swift */; };
 		EC32445C25E7086400C6843C /* groceries.json in Resources */ = {isa = PBXBuildFile; fileRef = EC32445B25E7086400C6843C /* groceries.json */; };
 		EC32446425E70A7400C6843C /* PersonalGroceryTrackerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32446325E70A7400C6843C /* PersonalGroceryTrackerModel.swift */; };
@@ -24,6 +23,10 @@
 		EC32447425EC7DFE00C6843C /* BoughtItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32447325EC7DFE00C6843C /* BoughtItem.swift */; };
 		EC32447D25EC8AC300C6843C /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32447C25EC8AC300C6843C /* ShoppingListView.swift */; };
 		EC32448225EC8EF400C6843C /* MyGroceryTrackerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC32448125EC8EF400C6843C /* MyGroceryTrackerModel.swift */; };
+		ECBFF5DB261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5DA261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift */; };
+		ECBFF5E3261D17C100FBDCDE /* BoughtItem+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */; };
+		ECBFF5E8261D17E400FBDCDE /* GroceryItem+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5E7261D17E400FBDCDE /* GroceryItem+CoreData.swift */; };
+		ECBFF5ED261D180C00FBDCDE /* Recipe+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5EC261D180C00FBDCDE /* Recipe+CoreData.swift */; };
 		ECE1A32425F1CF1A009BE1AF /* AddShoppingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */; };
 		ECE1A32925F1D00A009BE1AF /* GroceryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */; };
 		ECFFE61C2606D15100605A4F /* FridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFE61B2606D15100605A4F /* FridgeView.swift */; };
@@ -65,7 +68,6 @@
 		EC32442625E701B500C6843C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC32443525E7025D00C6843C /* GroceriesTrackerPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GroceriesTrackerPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EC32443E25E702D400C6843C /* GroceryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItem.swift; sourceTree = "<group>"; };
-		EC32444725E7035700C6843C /* Item+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+CoreData.swift"; sourceTree = "<group>"; };
 		EC32445225E706DA00C6843C /* StorageLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageLocation.swift; sourceTree = "<group>"; };
 		EC32445B25E7086400C6843C /* groceries.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = groceries.json; sourceTree = "<group>"; };
 		EC32446325E70A7400C6843C /* PersonalGroceryTrackerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalGroceryTrackerModel.swift; sourceTree = "<group>"; };
@@ -73,6 +75,10 @@
 		EC32447325EC7DFE00C6843C /* BoughtItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoughtItem.swift; sourceTree = "<group>"; };
 		EC32447C25EC8AC300C6843C /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		EC32448125EC8EF400C6843C /* MyGroceryTrackerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroceryTrackerModel.swift; sourceTree = "<group>"; };
+		ECBFF5DA261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroceryTrackerCoreDataModel.swift; sourceTree = "<group>"; };
+		ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoughtItem+CoreData.swift"; sourceTree = "<group>"; };
+		ECBFF5E7261D17E400FBDCDE /* GroceryItem+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroceryItem+CoreData.swift"; sourceTree = "<group>"; };
+		ECBFF5EC261D180C00FBDCDE /* Recipe+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Recipe+CoreData.swift"; sourceTree = "<group>"; };
 		ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShoppingListItemView.swift; sourceTree = "<group>"; };
 		ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItemView.swift; sourceTree = "<group>"; };
 		ECFFE61B2606D15100605A4F /* FridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeView.swift; sourceTree = "<group>"; };
@@ -182,12 +188,7 @@
 		EC32443D25E7029E00C6843C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EC32447325EC7DFE00C6843C /* BoughtItem.swift */,
-				EC32446825E70C2300C6843C /* Recipe.swift */,
-				EC32443E25E702D400C6843C /* GroceryItem.swift */,
-				EC32445225E706DA00C6843C /* StorageLocation.swift */,
-				EC32446325E70A7400C6843C /* PersonalGroceryTrackerModel.swift */,
-				EC32448125EC8EF400C6843C /* MyGroceryTrackerModel.swift */,
+				ECBFF5D8261D146400FBDCDE /* JSON */,
 				EC32444625E702EB00C6843C /* CoreData */,
 			);
 			path = Models;
@@ -196,7 +197,10 @@
 		EC32444625E702EB00C6843C /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				EC32444725E7035700C6843C /* Item+CoreData.swift */,
+				ECBFF5DA261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift */,
+				ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */,
+				ECBFF5E7261D17E400FBDCDE /* GroceryItem+CoreData.swift */,
+				ECBFF5EC261D180C00FBDCDE /* Recipe+CoreData.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -220,6 +224,19 @@
 				ECFFE6202606D70600605A4F /* AddFridgeItemView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		ECBFF5D8261D146400FBDCDE /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				EC32447325EC7DFE00C6843C /* BoughtItem.swift */,
+				EC32446825E70C2300C6843C /* Recipe.swift */,
+				EC32443E25E702D400C6843C /* GroceryItem.swift */,
+				EC32445225E706DA00C6843C /* StorageLocation.swift */,
+				EC32446325E70A7400C6843C /* PersonalGroceryTrackerModel.swift */,
+				EC32448125EC8EF400C6843C /* MyGroceryTrackerModel.swift */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -357,14 +374,17 @@
 				ECFFE6262606DADA00605A4F /* BoughtItemView.swift in Sources */,
 				EC32447D25EC8AC300C6843C /* ShoppingListView.swift in Sources */,
 				EC32443F25E702D400C6843C /* GroceryItem.swift in Sources */,
-				EC32444825E7035700C6843C /* Item+CoreData.swift in Sources */,
 				ECFFE61C2606D15100605A4F /* FridgeView.swift in Sources */,
 				ECFFE6212606D70600605A4F /* AddFridgeItemView.swift in Sources */,
+				ECBFF5E3261D17C100FBDCDE /* BoughtItem+CoreData.swift in Sources */,
+				ECBFF5E8261D17E400FBDCDE /* GroceryItem+CoreData.swift in Sources */,
 				EC32448225EC8EF400C6843C /* MyGroceryTrackerModel.swift in Sources */,
+				ECBFF5ED261D180C00FBDCDE /* Recipe+CoreData.swift in Sources */,
 				EC32440F25E701B500C6843C /* GroceriesTracker.xcdatamodeld in Sources */,
 				EC32440C25E701B500C6843C /* Persistence.swift in Sources */,
 				EC32440525E701B000C6843C /* ContentView.swift in Sources */,
 				ECE1A32425F1CF1A009BE1AF /* AddShoppingListItemView.swift in Sources */,
+				ECBFF5DB261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift in Sources */,
 				EC32446925E70C2300C6843C /* Recipe.swift in Sources */,
 				EC32440325E701B000C6843C /* GroceriesTrackerApp.swift in Sources */,
 				EC32445325E706DA00C6843C /* StorageLocation.swift in Sources */,

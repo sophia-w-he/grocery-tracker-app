@@ -52,6 +52,16 @@ struct JSONDataView: View {
   
 }
 
+struct CoreDataView: View {
+  //TODO
+  @State var selection = 1
+  var body: some View {
+    TabView(selection: $selection) {
+    }
+  }
+  
+}
+
 /*
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext

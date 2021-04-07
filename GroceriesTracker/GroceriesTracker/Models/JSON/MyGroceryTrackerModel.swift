@@ -16,7 +16,6 @@ struct MyGroceryTrackerModel: PersonalGroceryTrackerModel {
   var myFreezer: [BoughtItem]
   var myPantry: [BoughtItem]
   var myRecipes: [Recipe]
-  
 
 }
 
