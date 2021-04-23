@@ -62,6 +62,9 @@ struct JSONDataView: View {
   
 }
 
+// TODO:
+// - Add icons
+// - fix query for fridge
 struct CoreDataView: View {
   //TODO
   @Binding var selection: Int
@@ -88,7 +91,7 @@ struct CoreDataView: View {
       NSSortDescriptor(keyPath: \GroceryItemEntity.name, ascending: true),
   ]) var shoppingList: FetchedResults<GroceryItemEntity>
   
-  // FIX THIS
+  // TODO: FIX THIS
   @FetchRequest(
     entity: BoughtItemEntity.entity(),
     sortDescriptors: [
@@ -107,7 +110,7 @@ struct CoreDataView: View {
   var body: some View {
     TabView(selection: $selection) {
       CoreDataShoppingListView(fridge: $fridge, freezer: $freezer, pantry: $pantry)
-        .tabItem{ Text("Shopping List") }
+        .tabItem{ Text("Grocery List") }
         .tag(1)
       FridgeView(fridge: $fridge)
         .tabItem{ Text("Fridge") }

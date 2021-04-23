@@ -22,13 +22,13 @@ struct PantryView: View {
         }
       }
       .navigationBarTitleDisplayMode(.inline)
-      //.navigationTitle("Fridge")
+      //.navigationTitle("Pantry")
         //.background(NavigationConfigurator { nc in
         //  nc.navigationBar.barTintColor = .blue
         //  nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
         //})
-       .toolbar { // <2>
-            ToolbarItem(placement: .principal) { // <3>
+       .toolbar { 
+            ToolbarItem(placement: .principal) {
                 VStack {
                   Spacer()
                   Text("Pantry").font(.system(size: 30, design: .serif))
@@ -41,7 +41,7 @@ struct PantryView: View {
         .navigationBarItems(trailing: Button("Add") {
             self.isAddSheetShowing.toggle()
         }).sheet(isPresented: self.$isAddSheetShowing, content: {
-            AddFridgeItemView(fridge: $pantry)
+          AddStorageItemView(fridge: $pantry, isPresented: $isAddSheetShowing)
         })
     }
   }

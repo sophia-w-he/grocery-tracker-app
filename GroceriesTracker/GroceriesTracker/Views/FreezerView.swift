@@ -22,13 +22,13 @@ struct FreezerView: View {
         }
       }
       .navigationBarTitleDisplayMode(.inline)
-      //.navigationTitle("Fridge")
+      //.navigationTitle("Freezer")
         //.background(NavigationConfigurator { nc in
         //  nc.navigationBar.barTintColor = .blue
         //  nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
         //})
-       .toolbar { // <2>
-            ToolbarItem(placement: .principal) { // <3>
+       .toolbar {
+            ToolbarItem(placement: .principal) { 
                 VStack {
                   Spacer()
                   Text("Freezer").font(.system(size: 30, design: .serif))
@@ -41,7 +41,7 @@ struct FreezerView: View {
         .navigationBarItems(trailing: Button("Add") {
             self.isAddSheetShowing.toggle()
         }).sheet(isPresented: self.$isAddSheetShowing, content: {
-            AddFridgeItemView(fridge: $freezer)
+          AddStorageItemView(fridge: $freezer, isPresented: $isAddSheetShowing)
         })
     }
   }

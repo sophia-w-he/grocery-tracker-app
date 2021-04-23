@@ -26,6 +26,7 @@
 		EC48A8BE263247EC0077F866 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC48A8BD263247EC0077F866 /* MapView.swift */; };
 		EC48A8C3263252650077F866 /* GroceryMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC48A8C2263252650077F866 /* GroceryMapView.swift */; };
 		EC48A8C82632732E0077F866 /* PlaceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC48A8C72632732E0077F866 /* PlaceListView.swift */; };
+		EC48A8D5263372450077F866 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC48A8D4263372450077F866 /* NotificationView.swift */; };
 		ECBFF5DB261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5DA261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift */; };
 		ECBFF5E3261D17C100FBDCDE /* BoughtItem+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */; };
 		ECBFF5E8261D17E400FBDCDE /* GroceryItem+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5E7261D17E400FBDCDE /* GroceryItem+CoreData.swift */; };
@@ -35,7 +36,7 @@
 		ECE1A32425F1CF1A009BE1AF /* AddShoppingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */; };
 		ECE1A32925F1D00A009BE1AF /* GroceryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */; };
 		ECFFE61C2606D15100605A4F /* FridgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFE61B2606D15100605A4F /* FridgeView.swift */; };
-		ECFFE6212606D70600605A4F /* AddFridgeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFE6202606D70600605A4F /* AddFridgeItemView.swift */; };
+		ECFFE6212606D70600605A4F /* AddStorageItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFE6202606D70600605A4F /* AddStorageItemView.swift */; };
 		ECFFE6262606DADA00605A4F /* BoughtItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFFE6252606DADA00605A4F /* BoughtItemView.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +84,7 @@
 		EC48A8BD263247EC0077F866 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		EC48A8C2263252650077F866 /* GroceryMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryMapView.swift; sourceTree = "<group>"; };
 		EC48A8C72632732E0077F866 /* PlaceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListView.swift; sourceTree = "<group>"; };
+		EC48A8D4263372450077F866 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		ECBFF5DA261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroceryTrackerCoreDataModel.swift; sourceTree = "<group>"; };
 		ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoughtItem+CoreData.swift"; sourceTree = "<group>"; };
 		ECBFF5E7261D17E400FBDCDE /* GroceryItem+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroceryItem+CoreData.swift"; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShoppingListItemView.swift; sourceTree = "<group>"; };
 		ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryItemView.swift; sourceTree = "<group>"; };
 		ECFFE61B2606D15100605A4F /* FridgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FridgeView.swift; sourceTree = "<group>"; };
-		ECFFE6202606D70600605A4F /* AddFridgeItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFridgeItemView.swift; sourceTree = "<group>"; };
+		ECFFE6202606D70600605A4F /* AddStorageItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStorageItemView.swift; sourceTree = "<group>"; };
 		ECFFE6252606DADA00605A4F /* BoughtItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoughtItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,12 +233,13 @@
 				ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */,
 				ECFFE6252606DADA00605A4F /* BoughtItemView.swift */,
 				ECFFE61B2606D15100605A4F /* FridgeView.swift */,
-				ECFFE6202606D70600605A4F /* AddFridgeItemView.swift */,
+				ECFFE6202606D70600605A4F /* AddStorageItemView.swift */,
 				ECBFF5F4261E540200FBDCDE /* FreezerView.swift */,
 				ECBFF5F9261E541300FBDCDE /* PantryView.swift */,
 				EC48A8C2263252650077F866 /* GroceryMapView.swift */,
 				EC48A8BD263247EC0077F866 /* MapView.swift */,
 				EC48A8C72632732E0077F866 /* PlaceListView.swift */,
+				EC48A8D4263372450077F866 /* NotificationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -387,11 +390,12 @@
 				EC32446425E70A7400C6843C /* PersonalGroceryTrackerModel.swift in Sources */,
 				ECE1A32925F1D00A009BE1AF /* GroceryItemView.swift in Sources */,
 				ECFFE6262606DADA00605A4F /* BoughtItemView.swift in Sources */,
+				EC48A8D5263372450077F866 /* NotificationView.swift in Sources */,
 				EC48A8C3263252650077F866 /* GroceryMapView.swift in Sources */,
 				EC32447D25EC8AC300C6843C /* ShoppingListView.swift in Sources */,
 				EC32443F25E702D400C6843C /* GroceryItem.swift in Sources */,
 				ECFFE61C2606D15100605A4F /* FridgeView.swift in Sources */,
-				ECFFE6212606D70600605A4F /* AddFridgeItemView.swift in Sources */,
+				ECFFE6212606D70600605A4F /* AddStorageItemView.swift in Sources */,
 				ECBFF5E3261D17C100FBDCDE /* BoughtItem+CoreData.swift in Sources */,
 				ECBFF5E8261D17E400FBDCDE /* GroceryItem+CoreData.swift in Sources */,
 				EC48A8BE263247EC0077F866 /* MapView.swift in Sources */,

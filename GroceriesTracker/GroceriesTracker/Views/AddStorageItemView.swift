@@ -1,5 +1,5 @@
 //
-//  AddFridgeItemView.swift
+//  AddStorageItemView.swift
 //  GroceriesTracker
 //
 //  Created by Sophia on 3/20/21.
@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 import Combine
 
-
-struct AddFridgeItemView: View {
+// TODO: ADD DISMISS
+struct AddStorageItemView: View {
   @Binding var fridge:[BoughtItem]
+  @Binding var isPresented: Bool
   
   @State private var name: String = ""
   @State private var imageName: String = ""
@@ -182,9 +183,17 @@ struct AddFridgeItemView: View {
               let groc = GroceryItem(name: name, imageName: "", onShoppingList: false, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0)
               let bought = BoughtItem(groceryItem: groc)
               fridge.append(bought)
+              isPresented = false
             }, label: {
               Text("Add")
             })
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
+            Button("Cancel") {
+              isPresented = false
+            }
           }.padding(.vertical)
           .fixedSize(horizontal: false, vertical: true)
         }

@@ -9,7 +9,8 @@ import Foundation
 import SwiftUI
 import Combine
 
-
+// TODO: ADD DISMISS or cancel
+// TODO: Assert values must be entered
 struct AddShoppingListItemView: View {
   @Binding var shoppingList:[GroceryItem]
   
@@ -194,8 +195,11 @@ struct AddShoppingListItemView: View {
   }
 }
 
+// TODO: Assert values must be entered
 struct AddShoppingListItemCoreDataView: View {
+  
   //@Binding var shoppingList:[GroceryItem]
+  @Binding var isPresented: Bool
   
   @State private var name: String = ""
   @State private var imageName: String = ""
@@ -220,7 +224,7 @@ struct AddShoppingListItemCoreDataView: View {
     if !itemSubmitted {
       ZStack {
         //RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
-        LinearGradient(gradient: Gradient(colors: [.blue, .white, .green]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        LinearGradient(gradient: Gradient(colors: [.white, .green]), startPoint: .topLeading, endPoint: .bottomTrailing)
         //AngularGradient(gradient: Gradient(colors: [.green, .blue, .black, .green, .blue, .black, .green]), center: .center)
         VStack {
           Text("Add Item").font(.system(size: 30, design: .serif)).fontWeight(.bold)
@@ -240,7 +244,6 @@ struct AddShoppingListItemCoreDataView: View {
                 Spacer(minLength: 25)
               }
               HStack {
-                // TODO: Use picker for quantity
                 Spacer()
                 TextField("Quantity", text: $quantity)
                   .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -286,7 +289,6 @@ struct AddShoppingListItemCoreDataView: View {
                 Spacer(minLength: 25)
               }
               HStack {
-                // TODO: Use picker for expiration times
                 Spacer()
                 TextField("Qty", text: $qtyExpire)
                   .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -371,23 +373,41 @@ struct AddShoppingListItemCoreDataView: View {
               } catch {
                 print("Error saving item to core data \(error)")
               }
+              isPresented = false
 
               //shoppingList.append(groc)
             }, label: {
               Text("Add")
             })
+            Spacer()
+            Spacer()
+            Spacer()
+            Spacer()
+            Button("Cancel") {
+              isPresented = false
+            }
           }.padding(.vertical)
           .fixedSize(horizontal: false, vertical: true)
         }
       }.edgesIgnoringSafeArea(.all)
-    } else {
-      Text("Added!")
-    }
+    } /*else {
+      VStack {
+        Spacer()
+        Spacer()
+        Text("Added!")
+        Spacer()
+        Button("Dismiss") {
+          isPresented = false
+        }
+        Spacer()
+      }
+    }*/
   }
 }
 
 
 /*
+ FOR REFERENCE
  "name" : "banana",
  "imageName" : "banana.jpg",
  "onShoppingList" : true,

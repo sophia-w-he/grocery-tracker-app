@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
+// TODO: Implement slide to delete
 struct ShoppingListView: View {
   @Binding var shoppingList: [GroceryItem]
   
@@ -23,7 +24,6 @@ struct ShoppingListView: View {
   @State var isEditing = false
   @State var selection = Set<String>()
   
-  // TODO CHANGE THIS FOR CORE DATA
   var dataModel = testModel
   
   /*init() {
@@ -54,8 +54,8 @@ struct ShoppingListView: View {
             //  nc.navigationBar.barTintColor = .blue
             //  nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
             //})
-            .toolbar { // <2>
-                ToolbarItem(placement: .principal) { // <3>
+            .toolbar {
+                ToolbarItem(placement: .principal) {
                     VStack {
                       Spacer()
                       Text("Shopping List").font(.system(size: 25, design: .serif))
@@ -72,7 +72,7 @@ struct ShoppingListView: View {
                                   }else {
                                     itemsToAdd.forEach(){ item in
                                       print(itemsToAdd)
-                                      // TODO CHANGE THIS FOR CORE DATA
+
                                       let grocIndex = shoppingList.firstIndex(where: { $0.name ==  item})
                                       let groc = shoppingList[grocIndex!]
                                       let bought = BoughtItem(groceryItem: groc)
@@ -94,7 +94,7 @@ struct ShoppingListView: View {
                                     self.isEditing.toggle()
                                   }
                                 },
-                              trailing: Button("Add Item") {
+                              trailing: Button("Add") {
                 self.isAddSheetShowing.toggle()
             }).sheet(isPresented: self.$isAddSheetShowing, content: {
               AddShoppingListItemView(shoppingList: $shoppingList)
@@ -137,13 +137,30 @@ struct GroceryItemRowView: View {
 }
 
 
-
+// TODO: Implement slide to delete
 struct CoreDataShoppingListView: View {
   //@Binding var shoppingList: [GroceryItem]
   
   @Binding var fridge: [BoughtItem]
   @Binding var freezer: [BoughtItem]
   @Binding var pantry: [BoughtItem]
+  
+  
+  init(fridge: Binding<[BoughtItem]>, freezer: Binding<[BoughtItem]>, pantry: Binding<[BoughtItem]>) {
+    self._fridge = fridge
+    self._freezer = freezer
+    self._pantry = pantry
+    // Emerald
+    //UINavigationBar.appearance().barTintColor = UIColor(red: 80 / 255, green: 200 / 255, blue: 120 / 255, alpha: 1)
+    // pistachio
+    //UINavigationBar.appearance().barTintColor = UIColor(red: 147 / 255, green: 197 / 255, blue: 114 / 255, alpha: 1)
+    // celadon
+    //UINavigationBar.appearance().barTintColor = UIColor(red: 175 / 255, green: 225 / 255, blue: 175 / 255, alpha: 1)
+    // light green
+    UINavigationBar.appearance().barTintColor = UIColor(red: 144 / 255, green: 238 / 255, blue: 144 / 255, alpha: 1)
+    //UINavigationBar.appearance().backgroundColor = .green
+    //UINavigationBar.appearance().tintColor = .green
+  }
   
   @Environment(\.managedObjectContext) var context
   @FetchRequest(
@@ -159,14 +176,17 @@ struct CoreDataShoppingListView: View {
   
   @State var isEditing = false
   @State var selection = Set<String>()
+
   
-  // TODO CHANGE THIS FOR CORE DATA
   // var dataModel = MyGroceryTrackerCoreDataModel()
+  /*func delete(at offsets: IndexSet) {
+    shoppingList.remove(atOffsets: offsets)
+  }*/
   
   var body: some View {
     NavigationView {
       ZStack {
-        RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
+        //RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
         VStack {
           List(shoppingList, id: \.name!, selection: $itemsToAdd) { item in
             let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getGroceryItemWith(name: item.name!)!)
@@ -176,17 +196,18 @@ struct CoreDataShoppingListView: View {
           }
           .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive))
           .navigationBarTitleDisplayMode(.inline)
-            .toolbar { // <2>
-                ToolbarItem(placement: .principal) { // <3>
+            .toolbar {
+                ToolbarItem(placement: .principal) {
                     VStack {
                       Spacer()
                       Text("Shopping List").font(.system(size: 25, design: .serif))
                       Spacer()
                       Spacer()
                       
-                    }
+                    }.foregroundColor(.black)
                 }
             }
+          //.navigationBarColor(backgroundColor: .green, titleColor: .white)
           .navigationBarItems(leading:
                                 Button(isEditing ? "Check Off" : "Edit") {
                                   if !isEditing {
@@ -200,8 +221,8 @@ struct CoreDataShoppingListView: View {
                                       print(groc)
                                       let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getGroceryItemWith(name: groc.name!)!)
                                       let bought = BoughtItem(groceryItem: grocItem)
-                                      /*print(bought)
-                                      bought.convertToManagedObject()*/
+                                      // print(bought)
+                                      // bought.convertToManagedObject()
                                       
                                       do {
                                         try MyGroceryTrackerCoreDataModel.context.save()
@@ -232,14 +253,64 @@ struct CoreDataShoppingListView: View {
                                     
                                   }
                                 },
-            trailing: Button("Add Item") {
+            trailing: Button("Add") {
                 self.isAddSheetShowing.toggle()
             }).sheet(isPresented: self.$isAddSheetShowing, content: {
-              AddShoppingListItemCoreDataView()
+              AddShoppingListItemCoreDataView(isPresented: $isAddSheetShowing)
             })
+          /*.background(NavigationConfigurator { nc in
+              nc.navigationBar.barTintColor = .blue
+              nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
+          })*/
         }
         
       }.edgesIgnoringSafeArea(.all)
-    }
+    }//.navigationViewStyle(StackNavigationViewStyle())
   }
+}
+
+struct NavigationBarModifier: ViewModifier {
+
+    var backgroundColor: UIColor?
+    var titleColor: UIColor?
+
+    init(backgroundColor: UIColor?, titleColor: UIColor?) {
+        self.backgroundColor = backgroundColor
+        let coloredAppearance = UINavigationBarAppearance()
+        coloredAppearance.configureWithTransparentBackground()
+        coloredAppearance.backgroundColor = backgroundColor
+        coloredAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .white]
+        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .white]
+
+        UINavigationBar.appearance().standardAppearance = coloredAppearance
+        UINavigationBar.appearance().compactAppearance = coloredAppearance
+        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+    }
+
+    func body(content: Content) -> some View {
+        ZStack{
+            content
+            VStack {
+                GeometryReader { geometry in
+                    Color(self.backgroundColor ?? .clear)
+                        .frame(height: geometry.safeAreaInsets.top)
+                        .edgesIgnoringSafeArea(.top)
+                    Spacer()
+                }
+            }
+        }
+    }
+}
+
+extension View {
+
+    func navigationBarColor(backgroundColor: UIColor?, titleColor: UIColor?) -> some View {
+        self.modifier(NavigationBarModifier(backgroundColor: backgroundColor, titleColor: titleColor))
+    }
+
+}
+
+extension Color {
+    static let teal = Color(red: 49 / 255, green: 163 / 255, blue: 159 / 255)
+    static let darkPink = Color(red: 208 / 255, green: 45 / 255, blue: 208 / 255)
 }

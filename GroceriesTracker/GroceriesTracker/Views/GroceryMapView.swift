@@ -16,15 +16,6 @@ struct GroceryMapView: View {
   @State private var search: String = "Grocery Stores"
   @State private var tapped: Bool = false
   
-  /*init() {
-    //_search = State(initialValue: "Grocery Stores")
-    //_landmarks = State(initialValue: [])
-    self.getNearByLandmarks()
-    print(landmarks)
-    
-  }*/
-  
-  
   private func getNearByLandmarks() {
     
     let request = MKLocalSearch.Request()
@@ -62,11 +53,17 @@ struct GroceryMapView: View {
       
       MapView(landmarks: landmarks)
       
-      TextField("Search", text: $search, onEditingChanged: { _ in })
-      {
-        self.getNearByLandmarks()
-      }.textFieldStyle(RoundedBorderTextFieldStyle())
-      .padding()
+      HStack {
+        TextField("Search", text: $search, onEditingChanged: { _ in })
+        {
+          self.getNearByLandmarks()
+        }.textFieldStyle(RoundedBorderTextFieldStyle())
+        
+        Button("Search") {
+          self.getNearByLandmarks()
+        }
+      
+      }.padding()
       .offset(y: 44)
       
       PlaceListView(landmarks: self.landmarks) {

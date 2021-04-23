@@ -14,16 +14,16 @@ struct GroceriesTrackerApp: App {
   
   init() {
     dataModel.loadAllDatabaseData()
-    
   }
-
-    var body: some Scene {
-        WindowGroup {
-            /*ContentView(model: MyGroceryTrackerModel.designModel)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)*/
-          ContentView(model: dataModel)
-              .environment(\.managedObjectContext, persistenceController.container.viewContext)
-
-        }
+  
+  var body: some Scene {
+    WindowGroup {
+      // non coredata content view commented out
+      /*ContentView(model: MyGroceryTrackerModel.designModel)
+       .environment(\.managedObjectContext, persistenceController.container.viewContext)*/
+      ContentView(model: dataModel)
+        .environment(\.managedObjectContext, persistenceController.container.viewContext)
+      
     }
+  }
 }
