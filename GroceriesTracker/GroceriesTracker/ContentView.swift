@@ -14,7 +14,8 @@ struct ContentView: View {
   @State var model: PersonalGroceryTrackerModel
   
   var body: some View {
-    JSONDataView(selection: $selection, model: $model)
+    //JSONDataView(selection: $selection, model: $model)
+    CoreDataView(selection: $selection, model: $model)
   }
 }
 
@@ -32,11 +33,6 @@ struct JSONDataView: View {
   init(selection: Binding<Int>, model: Binding<PersonalGroceryTrackerModel>) {
     self._selection = selection
     self._model = model
-    
-    /*self._shoppingList = shoppingList
-    self._fridge = fridge
-    self._freezer = freezer
-    self._pantry = pantry*/
     
     self._shoppingList = model.myShoppingList
     self._fridge = model.myFridge
@@ -60,19 +56,6 @@ struct JSONDataView: View {
       PantryView(pantry: $pantry)
         .tabItem{ Text("Pantry") }
         .tag(4)
-      
-      /*CourseClassView(courseClass: model.schoolClasses[0])
-        .tabItem{ Text("Class") }
-        .tag(1)
-      AssignmentsTableView(assignments: model.assignments)
-        .tabItem{ Text("Assignments") }
-        .tag(2)
-      StudentsView(student: model.students[0])
-        .tabItem{ Text("Student") }
-        .tag(3)
-      TeacherView(teacher: model.teachers[0])
-        .tabItem{ Text("Teacher") }
-        .tag(4)*/
     }
     
   }
@@ -81,21 +64,39 @@ struct JSONDataView: View {
 
 struct CoreDataView: View {
   //TODO
-  @State var selection = 1
+  @Binding var selection: Int
   @Binding var model: PersonalGroceryTrackerModel
+  @Binding var fridge: [BoughtItem]
+  @Binding var freezer: [BoughtItem]
+  @Binding var pantry: [BoughtItem]
+  
+  //init(selection: Binding<Int>, model: Binding<PersonalGroceryTrackerModel>, shoppingList: Binding<[GroceryItem]>, fridge: Binding<[BoughtItem]>, freezer: Binding<[BoughtItem]>, pantry: Binding<[BoughtItem]>) {
+  init(selection: Binding<Int>, model: Binding<PersonalGroceryTrackerModel>) {
+    self._selection = selection
+    self._model = model
+    
+    self._fridge = model.myFridge
+    self._freezer = model.myFreezer
+    self._pantry = model.myPantry
+  }
+  
   @Environment(\.managedObjectContext) var context
   
   @FetchRequest(
     entity: GroceryItemEntity.entity(),
     sortDescriptors: [
       NSSortDescriptor(keyPath: \GroceryItemEntity.name, ascending: true),
-  ]) var groceryItems: FetchedResults<GroceryItemEntity>
+  ]) var shoppingList: FetchedResults<GroceryItemEntity>
   
+  // FIX THIS
   @FetchRequest(
     entity: BoughtItemEntity.entity(),
     sortDescriptors: [
       NSSortDescriptor(keyPath: \BoughtItemEntity.expirationDate, ascending: true),
-  ]) var boughtItems: FetchedResults<BoughtItemEntity>
+  ],
+    predicate: NSPredicate(format: "SUBQUERY(groceryItem, $groceryItem, $groceryItem.storageLocation == 'Fridge').@count > 0")
+    //predicate:  NSPredicate(format: "item.storageLocation == %@", "Fridge")
+  ) var myFridge: FetchedResults<BoughtItemEntity>
   
   @FetchRequest(
     entity: RecipeEntity.entity(),
@@ -104,10 +105,22 @@ struct CoreDataView: View {
   ]) var recipes: FetchedResults<RecipeEntity>
   
   var body: some View {
-    let boughtItemEntity = BoughtItemEntity()
-    let groceryItemEntity = GroceryItemEntity()
-    let recipeEntity = RecipeEntity()
     TabView(selection: $selection) {
+      CoreDataShoppingListView(fridge: $fridge, freezer: $freezer, pantry: $pantry)
+        .tabItem{ Text("Shopping List") }
+        .tag(1)
+      FridgeView(fridge: $fridge)
+        .tabItem{ Text("Fridge") }
+        .tag(2)
+      FreezerView(freezer: $freezer)
+        .tabItem{ Text("Freezer") }
+        .tag(3)
+      PantryView(pantry: $pantry)
+        .tabItem{ Text("Pantry") }
+        .tag(4)
+      GroceryMapView()
+        .tabItem{ Text("Map") }
+        .tag(5)
     }
   }
   
