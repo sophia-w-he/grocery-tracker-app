@@ -19,5 +19,18 @@ struct GroceryItem: Codable {
   var yearsExpireTime: Int            // 0 years
   var storageLocation: StorageLocation // fridge
   var quantity: Int
+  var expirationDate: Date?
+  
+  mutating func setExpirationDate() {
+    let currentDate = Date()
+    var dateComponent = DateComponents()
+    dateComponent.month = self.monthsExpireTime
+    dateComponent.day = self.daysExpireTime + (self.weeksExpireTime * 7)
+    dateComponent.year = self.yearsExpireTime
+    let futureDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
+    print(currentDate)
+    print(futureDate!)
+    self.expirationDate = futureDate!
+  }
 
 }

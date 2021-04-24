@@ -73,13 +73,13 @@ struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
     
   }
   
-  /// Returns a `GroceryItemEntity` for a given `name`
+  /// Returns a `GroceryItemEntity` for a given `name`that is on the shopping list
   /// - Parameter name: the name of the item
   /// - Returns: the optioanl `GroceryItemEntity` corresponding to that name
   static func getGroceryItemWith(name: String) -> GroceryItemEntity?
   {
     let request: NSFetchRequest<GroceryItemEntity> = GroceryItemEntity.fetchRequest()
-    request.predicate = NSPredicate(format: "name == %@", name)
+    request.predicate = NSPredicate(format: "name == %@ AND onShoppingList = true", name)
     
     do {
       let courseClass = try MyGroceryTrackerCoreDataModel.context.fetch(request).first
@@ -90,4 +90,23 @@ struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
     }
   }
   
+  
+  
+  /// Returns a `GroceryItemEntity` for a given `name`that is in inventory/bought
+  /// - Parameter name: the name of the item
+  /// - Returns: the optioanl `GroceryItemEntity` corresponding to that name
+  static func getInventoryItemWith(name: String) -> GroceryItemEntity?
+  {
+    let request: NSFetchRequest<GroceryItemEntity> = GroceryItemEntity.fetchRequest()
+    request.predicate = NSPredicate(format: "name == %@ AND onShoppingList = false", name)
+    
+    do {
+      let courseClass = try MyGroceryTrackerCoreDataModel.context.fetch(request).first
+      return courseClass
+    } catch {
+      print("fetch failed")
+      return nil
+    }
+  }
+
 }

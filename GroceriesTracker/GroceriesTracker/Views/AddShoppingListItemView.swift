@@ -180,7 +180,7 @@ struct AddShoppingListItemView: View {
             Button(action: {
               // submit action
               self.itemSubmitted.toggle()
-              let groc = GroceryItem(name: name, imageName: "", onShoppingList: true, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0)
+              let groc = GroceryItem(name: name, imageName: "", onShoppingList: true, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0, expirationDate: nil)
               shoppingList.append(groc)
             }, label: {
               Text("Add")
@@ -227,6 +227,20 @@ struct AddShoppingListItemCoreDataView: View {
         LinearGradient(gradient: Gradient(colors: [.white, .green]), startPoint: .topLeading, endPoint: .bottomTrailing)
         //AngularGradient(gradient: Gradient(colors: [.green, .blue, .black, .green, .blue, .black, .green]), center: .center)
         VStack {
+          HStack {
+            VStack{ Image("apple")
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+            }.frame(width: 30.0,height:30.0);
+            VStack{ Image("avocado")
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+            }.frame(width: 30.0,height:30.0);
+            VStack{ Image("carrot")
+              .resizable()
+              .aspectRatio(contentMode: .fit)
+            }.frame(width: 30.0,height:30.0);
+          }
           Text("Add Item").font(.system(size: 30, design: .serif)).fontWeight(.bold)
           HStack {
             VStack(alignment: .leading) {
@@ -365,7 +379,7 @@ struct AddShoppingListItemCoreDataView: View {
             Button(action: {
               // submit action
               self.itemSubmitted.toggle()
-              let groc = GroceryItem(name: name, imageName: "", onShoppingList: true, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0)
+              let groc = GroceryItem(name: name.lowercased(), imageName: name.lowercased().replacingOccurrences(of: "\\s", with: "", options: .regularExpression), onShoppingList: true, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0, expirationDate: nil)
               groc.convertToManagedObject()
               
               do {

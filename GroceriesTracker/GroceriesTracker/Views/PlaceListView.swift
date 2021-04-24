@@ -10,7 +10,6 @@ import SwiftUI
 import MapKit
 
 // TODO:
-// change text to white text
 // change font to match app font
 struct PlaceListView: View {
   
@@ -22,6 +21,7 @@ struct PlaceListView: View {
       HStack {
         Text("See Nearby Locations")
       }.frame(width: UIScreen.main.bounds.size.width, height: 60)
+      .foregroundColor(Color.white)
       .background(Color.gray)
       .gesture(TapGesture()
                 .onEnded(self.onTap)

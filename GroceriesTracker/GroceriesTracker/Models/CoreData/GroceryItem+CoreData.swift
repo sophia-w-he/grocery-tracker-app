@@ -32,7 +32,8 @@ extension GroceryItem {
     groceryItemEntity.yearsExpireTime = Int32(self.yearsExpireTime)
     groceryItemEntity.storageLocation = self.storageLocation.rawValue
     groceryItemEntity.quantity = Int32(self.quantity)
-    groceryItemEntity.onShoppingList = self.onShoppingList 
+    groceryItemEntity.onShoppingList = self.onShoppingList
+    groceryItemEntity.expirationDate = self.expirationDate
     
     return groceryItemEntity
   }
@@ -46,7 +47,8 @@ extension GroceryItem {
     self.yearsExpireTime = Int(groceryItemEntity.yearsExpireTime)
     self.storageLocation = StorageLocation(rawValue: groceryItemEntity.storageLocation!)!
     self.quantity = Int(groceryItemEntity.quantity)
-    self.onShoppingList = groceryItemEntity.onShoppingList 
+    self.onShoppingList = groceryItemEntity.onShoppingList
+    self.expirationDate = groceryItemEntity.expirationDate
   }
   
 }

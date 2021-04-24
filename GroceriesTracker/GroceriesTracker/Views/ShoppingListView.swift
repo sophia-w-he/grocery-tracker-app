@@ -94,11 +94,36 @@ struct ShoppingListView: View {
                                     self.isEditing.toggle()
                                   }
                                 },
-                              trailing: Button("Add") {
-                self.isAddSheetShowing.toggle()
-            }).sheet(isPresented: self.$isAddSheetShowing, content: {
-              AddShoppingListItemView(shoppingList: $shoppingList)
-            })
+                              trailing: Button(isEditing ? "Delete" : "Add") {
+                                if !isEditing {
+                                  self.isAddSheetShowing.toggle()
+                                }else {
+                                  itemsToAdd.forEach(){ item in
+                                    print(itemsToAdd)
+
+                                    let grocIndex = shoppingList.firstIndex(where: { $0.name ==  item})
+                                    /*let groc = shoppingList[grocIndex!]
+                                    let bought = BoughtItem(groceryItem: groc)
+                                    if groc.storageLocation == .Fridge {
+                                      fridge.append(bought)
+                                    } else if groc.storageLocation == .Freezer {
+                                      freezer.append(bought)
+                                    } else if groc.storageLocation == .Pantry {
+                                      pantry.append(bought)
+                                    }*/
+                            
+                                    shoppingList.remove(at:grocIndex!)
+                                    let itemIndex = itemsToAdd.firstIndex(of: item)
+                                    itemsToAdd.remove(at:itemIndex!)
+                                    
+                                    
+                                    //dataModel.assignStudent(student: username, toCourseClass: selectedClass)
+                                  }
+                                  self.isEditing.toggle()
+                                }
+                              }).sheet(isPresented: self.$isAddSheetShowing, content: {
+                                AddShoppingListItemView(shoppingList: $shoppingList)
+                              })
         }
         
       }.edgesIgnoringSafeArea(.all)
@@ -127,9 +152,10 @@ struct GroceryItemRowView: View {
   
   var body: some View {
     HStack {
-      //Image(item.imageName)
-      //  .resizable()
-      //  .aspectRatio(contentMode: .fit)
+      VStack{ Image(item.imageName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+        }.frame(width: 20.0,height:20.0);
       Text(item.name).font(.system(size: 25, design: .serif))
     }
   }
@@ -171,7 +197,7 @@ struct CoreDataShoppingListView: View {
   ) var shoppingList: FetchedResults<GroceryItemEntity>
   
   @State private var isAddSheetShowing = false
-  @State private var itemsToAdd = Set<String>()
+  @State private var itemsToEdit = Set<String>()
   @State var isEditMode: EditMode = .active
   
   @State var isEditing = false
@@ -188,11 +214,24 @@ struct CoreDataShoppingListView: View {
       ZStack {
         //RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
         VStack {
-          List(shoppingList, id: \.name!, selection: $itemsToAdd) { item in
+          List(shoppingList, id: \.name!, selection: $itemsToEdit) { item in
             let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getGroceryItemWith(name: item.name!)!)
+            
             NavigationLink(destination: GroceryItemView(item: grocItem), label: {
               GroceryItemRowView(item: grocItem)
             })
+            /*var showGrocView = true
+            VStack {
+              GroceryItemRowView(item: grocItem)
+                .onTapGesture() {
+                  showGrocView.toggle()
+                  print("showGrocView.toggle()")
+                  
+                }
+              GroceryItemView(item: grocItem).isHidden(showGrocView)
+              
+            }*/
+            
           }
           .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive))
           .navigationBarTitleDisplayMode(.inline)
@@ -213,13 +252,19 @@ struct CoreDataShoppingListView: View {
                                   if !isEditing {
                                     self.isEditing.toggle()
                                   }else {
-                                    itemsToAdd.forEach(){ item in
-                                      print(itemsToAdd)
+                                    itemsToEdit.forEach(){ item in
+                                      print(itemsToEdit)
                                       // TODO CHANGE THIS FOR CORE DATA
                                       let grocIndex = shoppingList.firstIndex(where: { $0.name! ==  item})
                                       let groc = shoppingList[grocIndex!]
                                       print(groc)
-                                      let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getGroceryItemWith(name: groc.name!)!)
+                                      var grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getGroceryItemWith(name: groc.name!)!)
+                                      grocItem.setExpirationDate()
+                                      
+                                      groc.expirationDate = grocItem.expirationDate!;
+                                      print("groc.expirationDate")
+                                      print(groc.expirationDate!)
+
                                       let bought = BoughtItem(groceryItem: grocItem)
                                       // print(bought)
                                       // bought.convertToManagedObject()
@@ -246,18 +291,45 @@ struct CoreDataShoppingListView: View {
                                         print("Error saving item to core data \(error)")
                                       }
                                       
-                                      let itemIndex = itemsToAdd.firstIndex(of: item)
-                                      itemsToAdd.remove(at:itemIndex!)
+                                      let itemIndex = itemsToEdit.firstIndex(of: item)
+                                      itemsToEdit.remove(at:itemIndex!)
                                     }
                                     self.isEditing.toggle()
                                     
                                   }
                                 },
-            trailing: Button("Add") {
-                self.isAddSheetShowing.toggle()
-            }).sheet(isPresented: self.$isAddSheetShowing, content: {
-              AddShoppingListItemCoreDataView(isPresented: $isAddSheetShowing)
-            })
+                              trailing: Button(isEditing ? "Delete" : "Add") {
+                                if !isEditing {
+                                  self.isAddSheetShowing.toggle()
+                                }else {
+                                  itemsToEdit.forEach(){ item in
+                                    print(itemsToEdit)
+
+                                    let grocIndex = shoppingList.firstIndex(where: { $0.name! ==  item})
+                                    let groc = shoppingList[grocIndex!]
+                            
+                                    context.delete(groc)
+                                    let itemIndex = itemsToEdit.firstIndex(of: item)
+                                    itemsToEdit.remove(at:itemIndex!)
+                                    /*do {
+                                      try MyGroceryTrackerCoreDataModel.context.save()
+                                    } catch {
+                                      print("Error saving item to core data \(error)")
+                                    }*/
+                                    
+                                    //dataModel.assignStudent(student: username, toCourseClass: selectedClass)
+                                  }
+                                  self.isEditing.toggle()
+                                  /*do {
+                                    try MyGroceryTrackerCoreDataModel.context.save()
+                                  } catch {
+                                    print("Error saving item to core data \(error)")
+                                  }*/
+                                }
+                              }).sheet(isPresented: self.$isAddSheetShowing, content: {
+                                AddShoppingListItemCoreDataView(isPresented: $isAddSheetShowing)
+                              })
+              
           /*.background(NavigationConfigurator { nc in
               nc.navigationBar.barTintColor = .blue
               nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]

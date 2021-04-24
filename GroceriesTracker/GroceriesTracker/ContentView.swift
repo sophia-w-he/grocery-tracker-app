@@ -63,7 +63,6 @@ struct JSONDataView: View {
 }
 
 // TODO:
-// - Add icons
 // - fix query for fridge
 struct CoreDataView: View {
   //TODO
@@ -110,19 +109,32 @@ struct CoreDataView: View {
   var body: some View {
     TabView(selection: $selection) {
       CoreDataShoppingListView(fridge: $fridge, freezer: $freezer, pantry: $pantry)
-        .tabItem{ Text("Grocery List") }
+        .tabItem{ /*VStack{ Image("cart")
+                  .resizable()
+                  .aspectRatio(1, contentMode: .fit)
+          }.frame(width: 5.0,height:5.0);*/
+          //Image("groc-cart-icon");
+          Image(systemName: "cart");
+          Text("Grocery List") }
         .tag(1)
-      FridgeView(fridge: $fridge)
-        .tabItem{ Text("Fridge") }
+      CoreDataFridgeView()
+        .tabItem{ //Image("fridge-icon");
+          Image(systemName: "thermometer");
+          Text("Fridge") }
         .tag(2)
+      /*FridgeView(fridge: $fridge)
+        .tabItem{ //Image("fridge-icon");
+          Image(systemName: "thermometer");
+          Text("Fridge") }
+        .tag(2)*/
       FreezerView(freezer: $freezer)
-        .tabItem{ Text("Freezer") }
+        .tabItem{ Image(systemName: "snow");Text("Freezer") }
         .tag(3)
       PantryView(pantry: $pantry)
-        .tabItem{ Text("Pantry") }
+        .tabItem{Image(systemName: "table"); Text("Pantry") }
         .tag(4)
       GroceryMapView()
-        .tabItem{ Text("Map") }
+        .tabItem{Image(systemName: "globe"); Text("Map") }
         .tag(5)
     }
   }

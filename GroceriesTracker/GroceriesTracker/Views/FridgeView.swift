@@ -52,13 +52,22 @@ struct FridgeView: View {
 
 struct CoreDataFridgeView: View {
   // FIX THIS
-  @FetchRequest(
-    entity: BoughtItemEntity.entity(),
+  /*@FetchRequest(
+    entity: GroceryItemEntity.entity(),
     sortDescriptors: [
-      NSSortDescriptor(keyPath: \BoughtItemEntity.expirationDate, ascending: true),]
+      NSSortDescriptor(keyPath: \GroceryItemEntity.expirationDate, ascending: true),]
     //,predicate: NSPredicate(format: "SUBQUERY(groceryItem, $groceryItem, $groceryItem.storageLocation == 'Fridge').@count > 0")
     //predicate:  NSPredicate(format: "item.storageLocation == %@", "Fridge")
-  ) var fridge: FetchedResults<BoughtItemEntity>
+  ) var fridge: FetchedResults<GroceryItemEntity>*/
+  
+  @FetchRequest(
+    entity: GroceryItemEntity.entity(),
+    sortDescriptors: [
+      NSSortDescriptor(keyPath: \GroceryItemEntity.name, ascending: true),],
+    predicate:  NSCompoundPredicate(andPredicateWithSubpredicates: [NSPredicate(format: "onShoppingList == false"), NSPredicate(format: "storageLocation == 'Fridge'")])
+    
+    //predicate: NSPredicate(format: "storageLocation == 'Fridge'")
+  ) var fridge: FetchedResults<GroceryItemEntity>
   
   @Environment(\.managedObjectContext) var context
   @FetchRequest(
@@ -68,6 +77,12 @@ struct CoreDataFridgeView: View {
   ]) var shoppingList: FetchedResults<GroceryItemEntity>
   
   @State private var isAddSheetShowing = false
+  @State private var itemsToEdit = Set<String>()
+  @State var isEditMode: EditMode = .active
+  
+  @State var isEditing = false
+  @State var selection = Set<String>()
+  
   var body: some View {
     NavigationView {
       VStack {
@@ -76,37 +91,66 @@ struct CoreDataFridgeView: View {
             GroceryItemRowView(item: item.groceryItem)
           })
         }*/
-        
-        List(fridge, id: \.expirationDate!) { item in
-          Text("ygjbjbjh")
-          /*let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getGroceryItemWith(name: item.name!)!)
-          NavigationLink(destination: GroceryItemView(item: grocItem), label: {
+        // id: \.expirationDate!
+        List(fridge, id: \.name!, selection: $itemsToEdit) { item in
+          //Text("ygjbjbjh")
+          let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getInventoryItemWith(name: item.name!)!)
+          NavigationLink(destination: BoughtItemCoreDataView(item: grocItem), label: {
             GroceryItemRowView(item: grocItem)
-          })*/
+          })
         }
       }
+      .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive))
       .navigationBarTitleDisplayMode(.inline)
-      //.navigationTitle("Fridge")
-        //.background(NavigationConfigurator { nc in
-        //  nc.navigationBar.barTintColor = .blue
-        //  nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
-        //})
-       .toolbar { // <2>
-            ToolbarItem(placement: .principal) { // <3>
+        .toolbar {
+            ToolbarItem(placement: .principal) {
                 VStack {
                   Spacer()
-                  Text("Fridge").font(.system(size: 30, design: .serif))
+                  Text("Fridge").font(.system(size: 25, design: .serif))
                   Spacer()
                   Spacer()
                   
-                }
+                }.foregroundColor(.black)
             }
         }
-        .navigationBarItems(trailing: Button("Add") {
-            self.isAddSheetShowing.toggle()
-        }).sheet(isPresented: self.$isAddSheetShowing, content: {
-            //AddFridgeItemView(fridge: $fridge)
-        })
+      .navigationBarItems(leading:
+                            Button(isEditing ? "Remove" : "Edit") {
+                              if !isEditing {
+                                self.isEditing.toggle()
+                              }else {
+                                itemsToEdit.forEach(){ item in
+                                  print(itemsToEdit)
+
+                                  let grocIndex = shoppingList.firstIndex(where: { $0.name! ==  item})
+                                  let groc = shoppingList[grocIndex!]
+                          
+                                  context.delete(groc)
+                                  let itemIndex = itemsToEdit.firstIndex(of: item)
+                                  itemsToEdit.remove(at:itemIndex!)
+                                  /*do {
+                                    try MyGroceryTrackerCoreDataModel.context.save()
+                                  } catch {
+                                    print("Error saving item to core data \(error)")
+                                  }*/
+                                  
+                                  
+                                  //dataModel.assignStudent(student: username, toCourseClass: selectedClass)
+                                }
+                                self.isEditing.toggle()
+                                  
+
+                                
+                              }
+                            },
+                          trailing: Button(isEditing ? "" : "Add") {
+                            if !isEditing {
+                              self.isAddSheetShowing.toggle()
+                            }
+                          }).sheet(isPresented: self.$isAddSheetShowing, content: {
+                            AddStorageItemCoreDataView(isPresented: $isAddSheetShowing)
+                          })
+      
+      
     }
   }
   

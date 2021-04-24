@@ -41,15 +41,34 @@ struct GroceryItemView: View {
     }
   }
   
+  @ViewBuilder func isHidden(_ shouldHide: Bool) -> some View {
+      switch shouldHide {
+      case true: self.hidden()
+      case false: self
+      }
+  }
+  
   var body: some View {
     
     VStack {
-      Image(item.imageName)
-        .resizable()
-        .aspectRatio(contentMode: .fit)
+      //Image(item.imageName)
+      HStack {
+        VStack{ Image(item.imageName)
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+        }.frame(width: 50.0,height:50.0);
+        VStack{ Image(item.imageName)
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+        }.frame(width: 50.0,height:50.0);
+        VStack{ Image(item.imageName)
+          .resizable()
+          .aspectRatio(contentMode: .fit)
+        }.frame(width: 50.0,height:50.0);
+      }
       Spacer().frame(height: 20)
       HStack {
-        Text(item.name).font(.title)
+        Text(item.name).font(.system(size: 25, design: .serif))
       }.padding(.bottom, 10)
       VStack(alignment: .leading, spacing: 20) {
         HStack {
