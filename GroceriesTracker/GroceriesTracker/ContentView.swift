@@ -117,7 +117,7 @@ struct CoreDataView: View {
           Image(systemName: "cart");
           Text("Grocery List") }
         .tag(1)
-      CoreDataFridgeView()
+      /*CoreDataFridgeView()
         .tabItem{ //Image("fridge-icon");
           Image(systemName: "thermometer");
           Text("Fridge") }
@@ -132,8 +132,17 @@ struct CoreDataView: View {
         .tag(3)
       PantryView(pantry: $pantry)
         .tabItem{Image(systemName: "table"); Text("Pantry") }
-        .tag(4)
+        .tag(4)*/
+      InventoryView(fridge: $fridge, freezer: $freezer, pantry: $pantry)
+        .tabItem{Image(systemName: "list.number"); Text("Inventory") }
+        .tag(2)
+      RecipeListView()
+        .tabItem{Image(systemName: "square.and.pencil"); Text("Recipes") }
+        .tag(3)
       GroceryMapView()
+        .tabItem{Image(systemName: "globe"); Text("Map") }
+        .tag(4)
+      CounterList()
         .tabItem{Image(systemName: "globe"); Text("Map") }
         .tag(5)
     }

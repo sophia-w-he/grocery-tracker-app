@@ -49,7 +49,7 @@ struct FridgeView: View {
   
 }
 
-
+// TODO QTY STEPPER
 struct CoreDataFridgeView: View {
   // FIX THIS
   /*@FetchRequest(
@@ -94,9 +94,9 @@ struct CoreDataFridgeView: View {
         // id: \.expirationDate!
         List(fridge, id: \.name!, selection: $itemsToEdit) { item in
           //Text("ygjbjbjh")
-          let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getInventoryItemWith(name: item.name!)!)
-          NavigationLink(destination: BoughtItemCoreDataView(item: grocItem), label: {
-            GroceryItemRowView(item: grocItem)
+          var grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getInventoryItemWith(name: item.name!)!)
+          NavigationLink(destination: BoughtItemCoreDataView(item: (grocItem), dataItem: item), label: {
+            GroceryItemCoreDataRowView(item: grocItem, dataItem: item)
           })
         }
       }
@@ -106,7 +106,7 @@ struct CoreDataFridgeView: View {
             ToolbarItem(placement: .principal) {
                 VStack {
                   Spacer()
-                  Text("Fridge").font(.system(size: 25, design: .serif))
+                  Text("Fridge").font(.system(size: 30, design: .serif))
                   Spacer()
                   Spacer()
                   
@@ -142,9 +142,11 @@ struct CoreDataFridgeView: View {
                                 
                               }
                             },
-                          trailing: Button(isEditing ? "" : "Add") {
+                          trailing: Button(isEditing ? "Cancel" : "Add") {
                             if !isEditing {
                               self.isAddSheetShowing.toggle()
+                            } else {
+                              self.isEditing.toggle()
                             }
                           }).sheet(isPresented: self.$isAddSheetShowing, content: {
                             AddStorageItemCoreDataView(isPresented: $isAddSheetShowing)
