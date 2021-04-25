@@ -16,16 +16,18 @@
         <attribute name="weeksExpireTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="yearsExpireTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="boughtItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BoughtItemEntity" inverseName="groceryItem" inverseEntity="BoughtItemEntity"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipeEntity" inverseName="ingredients" inverseEntity="RecipeEntity"/>
     </entity>
     <entity name="RecipeEntity" representedClassName="RecipeEntity" syncable="YES" codeGenerationType="class">
         <attribute name="imageName" optional="YES" attributeType="String"/>
+        <attribute name="ingredientNames" optional="YES" attributeType="Transformable" customClassName="Array&lt;String&gt;"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="recipeSteps" optional="YES" attributeType="Transformable" customClassName="Array&lt;String&gt;"/>
-        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroceryItemEntity"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroceryItemEntity" inverseName="recipe" inverseEntity="GroceryItemEntity"/>
     </entity>
     <elements>
         <element name="BoughtItemEntity" positionX="-63" positionY="-18" width="128" height="59"/>
-        <element name="GroceryItemEntity" positionX="-63" positionY="-9" width="128" height="194"/>
-        <element name="RecipeEntity" positionX="-54" positionY="0" width="128" height="14"/>
+        <element name="GroceryItemEntity" positionX="-63" positionY="-9" width="128" height="209"/>
+        <element name="RecipeEntity" positionX="-54" positionY="0" width="128" height="104"/>
     </elements>
 </model>

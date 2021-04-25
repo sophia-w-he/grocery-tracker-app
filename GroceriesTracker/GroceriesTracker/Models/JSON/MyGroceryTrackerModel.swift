@@ -39,7 +39,7 @@ struct GroceryTrackerModelTestData {
     myFridge = []
     myFreezer = []
     myPantry = []
-    myRecipes = []
+    myRecipes = decode([Recipe].self, from: "recipes.json")
   }
   
   // JSONDecoder documentation on apple.com used to create this method

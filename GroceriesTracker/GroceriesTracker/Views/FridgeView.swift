@@ -94,7 +94,7 @@ struct CoreDataFridgeView: View {
         // id: \.expirationDate!
         List(fridge, id: \.name!, selection: $itemsToEdit) { item in
           //Text("ygjbjbjh")
-          var grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getInventoryItemWith(name: item.name!)!)
+          let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getInventoryItemWith(name: item.name!)!)
           NavigationLink(destination: BoughtItemCoreDataView(item: (grocItem), dataItem: item), label: {
             GroceryItemCoreDataRowView(item: grocItem, dataItem: item)
           })
@@ -106,7 +106,7 @@ struct CoreDataFridgeView: View {
             ToolbarItem(placement: .principal) {
                 VStack {
                   Spacer()
-                  Text("Fridge").font(.system(size: 30, design: .serif))
+                  Text("Fridge").font(.system(size: 25, design: .serif))
                   Spacer()
                   Spacer()
                   

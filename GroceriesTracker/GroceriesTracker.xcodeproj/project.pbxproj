@@ -29,6 +29,7 @@
 		EC48A8D5263372450077F866 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC48A8D4263372450077F866 /* NotificationView.swift */; };
 		EC596AF02634AADA008D6210 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC596AEF2634AADA008D6210 /* InventoryView.swift */; };
 		EC596AF52634B2D0008D6210 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC596AF42634B2D0008D6210 /* RecipeView.swift */; };
+		EC596B032634F223008D6210 /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = EC596AFF2634EFEE008D6210 /* recipes.json */; };
 		ECBFF5DB261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5DA261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift */; };
 		ECBFF5E3261D17C100FBDCDE /* BoughtItem+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */; };
 		ECBFF5E8261D17E400FBDCDE /* GroceryItem+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5E7261D17E400FBDCDE /* GroceryItem+CoreData.swift */; };
@@ -89,6 +90,7 @@
 		EC48A8D4263372450077F866 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		EC596AEF2634AADA008D6210 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		EC596AF42634B2D0008D6210 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
+		EC596AFF2634EFEE008D6210 /* recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
 		ECBFF5DA261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroceryTrackerCoreDataModel.swift; sourceTree = "<group>"; };
 		ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoughtItem+CoreData.swift"; sourceTree = "<group>"; };
 		ECBFF5E7261D17E400FBDCDE /* GroceryItem+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroceryItem+CoreData.swift"; sourceTree = "<group>"; };
@@ -224,6 +226,8 @@
 		EC32445A25E707BD00C6843C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EC32445B25E7086400C6843C /* groceries.json */,
+				EC596AFF2634EFEE008D6210 /* recipes.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -231,7 +235,6 @@
 		EC32447B25EC8A7B00C6843C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EC32445B25E7086400C6843C /* groceries.json */,
 				EC32447C25EC8AC300C6843C /* ShoppingListView.swift */,
 				ECE1A32325F1CF1A009BE1AF /* AddShoppingListItemView.swift */,
 				ECE1A32825F1D00A009BE1AF /* GroceryItemView.swift */,
@@ -369,6 +372,7 @@
 				EC32440A25E701B500C6843C /* Preview Assets.xcassets in Resources */,
 				EC32445C25E7086400C6843C /* groceries.json in Resources */,
 				EC32440725E701B500C6843C /* Assets.xcassets in Resources */,
+				EC596B032634F223008D6210 /* recipes.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

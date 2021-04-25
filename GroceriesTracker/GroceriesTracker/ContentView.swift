@@ -91,20 +91,20 @@ struct CoreDataView: View {
   ]) var shoppingList: FetchedResults<GroceryItemEntity>
   
   // TODO: FIX THIS
-  @FetchRequest(
+  /*@FetchRequest(
     entity: BoughtItemEntity.entity(),
     sortDescriptors: [
       NSSortDescriptor(keyPath: \BoughtItemEntity.expirationDate, ascending: true),
   ],
     predicate: NSPredicate(format: "SUBQUERY(groceryItem, $groceryItem, $groceryItem.storageLocation == 'Fridge').@count > 0")
     //predicate:  NSPredicate(format: "item.storageLocation == %@", "Fridge")
-  ) var myFridge: FetchedResults<BoughtItemEntity>
+  ) var myFridge: FetchedResults<BoughtItemEntity>*/
   
-  @FetchRequest(
+  /*@FetchRequest(
     entity: RecipeEntity.entity(),
     sortDescriptors: [
       NSSortDescriptor(keyPath: \RecipeEntity.name, ascending: true),
-  ]) var recipes: FetchedResults<RecipeEntity>
+  ]) var recipes: FetchedResults<RecipeEntity>*/
   
   var body: some View {
     TabView(selection: $selection) {

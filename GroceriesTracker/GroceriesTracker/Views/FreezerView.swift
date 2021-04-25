@@ -76,7 +76,7 @@ struct CoreDataFreezerView: View {
     NavigationView {
       VStack {
         List(freezer, id: \.name!, selection: $itemsToEdit) { item in
-          var grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getInventoryItemWith(name: item.name!)!)
+          let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getInventoryItemWith(name: item.name!)!)
           NavigationLink(destination: BoughtItemCoreDataView(item: (grocItem), dataItem: item), label: {
             GroceryItemCoreDataRowView(item: grocItem, dataItem: item)
           })
@@ -88,7 +88,7 @@ struct CoreDataFreezerView: View {
         ToolbarItem(placement: .principal) {
           VStack {
             Spacer()
-            Text("Freezer").font(.system(size: 30, design: .serif))
+            Text("Freezer").font(.system(size: 25, design: .serif))
             Spacer()
             Spacer()
             

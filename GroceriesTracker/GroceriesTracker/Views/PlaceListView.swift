@@ -19,10 +19,10 @@ struct PlaceListView: View {
   var body: some View {
     VStack(alignment: .leading) {
       HStack {
-        Text("See Nearby Locations")
+        Text("See Nearby Locations").font(.system(size: 20, design: .serif))
       }.frame(width: UIScreen.main.bounds.size.width, height: 60)
-      .foregroundColor(Color.white)
-      .background(Color.gray)
+      .foregroundColor(Color.black)
+      .background(Color(red: 144 / 255, green: 238 / 255, blue: 144 / 255))
       .gesture(TapGesture()
                 .onEnded(self.onTap)
       )

@@ -71,7 +71,7 @@ struct CoreDataPantryView: View {
     NavigationView {
       VStack {
         List(pantry, id: \.name!, selection: $itemsToEdit) { item in
-          var grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getInventoryItemWith(name: item.name!)!)
+          let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getInventoryItemWith(name: item.name!)!)
           NavigationLink(destination: BoughtItemCoreDataView(item: (grocItem), dataItem: item), label: {
             GroceryItemCoreDataRowView(item: grocItem, dataItem: item)
           })
@@ -83,7 +83,7 @@ struct CoreDataPantryView: View {
         ToolbarItem(placement: .principal) {
           VStack {
             Spacer()
-            Text("Pantry").font(.system(size: 30, design: .serif))
+            Text("Pantry").font(.system(size: 25, design: .serif))
             Spacer()
             Spacer()
             

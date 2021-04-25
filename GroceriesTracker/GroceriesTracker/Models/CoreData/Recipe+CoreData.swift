@@ -22,6 +22,7 @@ extension Recipe {
     recipeEntity.imageName = self.imageName
     recipeEntity.ingredients = NSSet()
     recipeEntity.recipeSteps = self.recipeSteps
+    recipeEntity.ingredientNames = self.ingredientNames
     return recipeEntity
     
   }
@@ -39,6 +40,7 @@ extension Recipe {
     self.ingredients = tempIngredients
     
     self.recipeSteps = recipeEntity.recipeSteps!
+    self.ingredientNames = recipeEntity.ingredientNames!
     
   }
   

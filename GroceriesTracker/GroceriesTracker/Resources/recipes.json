@@ -1,0 +1,33 @@
+[
+  {
+    "name" : "lemonade",
+    "imageName" : "lemonade",
+    "ingredients" : [
+      {
+        "name" : "lemon",
+        "imageName" : "lemon",
+        "onShoppingList" : false,
+        "inInventory" : false,
+        "daysExpireTime" : 0,
+        "weeksExpireTime" : 0,
+        "monthsExpireTime" : 1,
+        "yearsExpireTime" : 0,
+        "storageLocation" : "Fridge",
+        "quantity" : 5
+        
+      }
+    ],
+    "recipeSteps" : ["Squeeze lemons", "Add sugar and water", "Enjoy!"],
+    "ingredientNames" : ["lemon", "sugar"]
+  },
+  {
+    "name" : "smoothie",
+    "imageName" : "smoothie",
+    "ingredients" : [],
+    "recipeSteps" : ["Combine ingredients", "Blend ingredients", "Enjoy!"],
+    "ingredientNames" : ["strawberry", "banana"]
+  }
+]
+
+
+

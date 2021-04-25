@@ -44,9 +44,17 @@ struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
     let groceryItemFetchRequest: NSFetchRequest<NSFetchRequestResult> = GroceryItemEntity.fetchRequest()
     let groceryItemDeleteRequest = NSBatchDeleteRequest(fetchRequest: groceryItemFetchRequest)
     
+    let recipeFetchRequest: NSFetchRequest<NSFetchRequestResult> = RecipeEntity.fetchRequest()
+    let recipeDeleteRequest = NSBatchDeleteRequest(fetchRequest: recipeFetchRequest)
+    
+    let boughtItemFetchRequest: NSFetchRequest<NSFetchRequestResult> = BoughtItemEntity.fetchRequest()
+    let boughtItemDeleteRequest = NSBatchDeleteRequest(fetchRequest: boughtItemFetchRequest)
+    
     do {
       try MyGroceryTrackerCoreDataModel.context.execute(groceryItemDeleteRequest)
-
+      try MyGroceryTrackerCoreDataModel.context.execute(recipeDeleteRequest)
+      try MyGroceryTrackerCoreDataModel.context.execute(boughtItemDeleteRequest)
+      
     } catch let error as NSError {
       print("error during deletion \(error.localizedDescription)")
     }
@@ -56,6 +64,7 @@ struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
     //TODO
     emptyDB()
     loadShoppingListFromJSON()
+    loadRecipesFromJSON() 
   }
   
   func loadShoppingListFromJSON() {
@@ -64,6 +73,22 @@ struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
     }
     
     myShoppingList.forEach({ item in _ = item.convertToManagedObject() })
+    
+    do {
+      try MyGroceryTrackerCoreDataModel.context.save()
+    } catch {
+      print("Error saving item to core data \(error)")
+    }
+    
+  }
+  
+  func loadRecipesFromJSON() {
+    guard let myRecipes = testData.myRecipes else {
+      return print("Error loading recipes")
+    }
+    
+    myRecipes.forEach({ item in _ = item.convertToManagedObject() })
+    print(myRecipes)
     
     do {
       try MyGroceryTrackerCoreDataModel.context.save()
@@ -82,14 +107,32 @@ struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
     request.predicate = NSPredicate(format: "name == %@ AND onShoppingList = true", name)
     
     do {
-      let courseClass = try MyGroceryTrackerCoreDataModel.context.fetch(request).first
-      return courseClass
+      let groc = try MyGroceryTrackerCoreDataModel.context.fetch(request).first
+      return groc
     } catch {
       print("fetch failed")
       return nil
     }
   }
   
+  
+  /// Returns a `Recipe` for a given `name`
+  /// - Parameter name: the name of the item
+  /// - Returns: the optioanl `RecipeEntity` corresponding to that name
+  static func getRecipeWith(name: String) -> RecipeEntity?
+  {
+    let request: NSFetchRequest<RecipeEntity> = RecipeEntity.fetchRequest()
+    request.predicate = NSPredicate(format: "name == %@", name)
+    
+    do {
+      let recipe = try MyGroceryTrackerCoreDataModel.context.fetch(request).first
+      print(recipe)
+      return recipe
+    } catch {
+      print("fetch failed")
+      return nil
+    }
+  }
   
   
   /// Returns a `GroceryItemEntity` for a given `name`that is in inventory/bought
