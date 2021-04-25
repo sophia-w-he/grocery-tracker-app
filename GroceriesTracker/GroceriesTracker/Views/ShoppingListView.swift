@@ -242,9 +242,14 @@ struct CoreDataShoppingListView: View {
                                       groc.expirationDate = grocItem.expirationDate!;
                                       print("groc.expirationDate")
                                       print(groc.expirationDate!)
+                                      
+                                      // DEMO
                                       var notifyDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: grocItem.expirationDate!)
-                                      //notifyDate.hour = 22
                                       notifyDate.minute! += 1
+                                      
+                                      // REAL
+                                      //notifyDate.hour = 10
+                                      //notifyDate.minute = 0
                                       NotificationView().setupAndFireNotification(date: notifyDate, item: groc.name!)
 
                                       let bought = BoughtItem(groceryItem: grocItem)

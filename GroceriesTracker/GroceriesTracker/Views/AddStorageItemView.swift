@@ -14,7 +14,6 @@ import Combine
 struct AddStorageItemCoreDataView: View {
   //@Binding var fridge:[BoughtItem]
 
-  
   @Binding var isPresented: Bool
   @Binding var notificationCenter:UNUserNotificationCenter!
   @Binding var notificationDelegate: UNUserNotificationCenterDelegate 
@@ -38,15 +37,6 @@ struct AddStorageItemCoreDataView: View {
   @State private var storage = ""
   @State private var timeDescriptor = ""
   
-  func setupNotification() {
-    let options:UNAuthorizationOptions = [.alert, .sound]
-    notificationCenter.requestAuthorization(options: options, completionHandler: {
-       success, error in
-        guard success == true else { print("Access not granted or error"); return }
-        print("notification access granted")
-    })
-  }
-  
   func setupAndFireNotification(date: DateComponents, item: String) {
     
     let options:UNAuthorizationOptions = [.alert, .sound]
@@ -68,8 +58,8 @@ struct AddStorageItemCoreDataView: View {
 
     content.categoryIdentifier = categoryId
     
-    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-    //let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+    //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
     print(date)
 
     let notification = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)

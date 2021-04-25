@@ -53,8 +53,8 @@ struct NotificationView: View {
 
     content.categoryIdentifier = categoryId
     
-    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-    //let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+    //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+    let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
     print(date)
 
     let notification = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
