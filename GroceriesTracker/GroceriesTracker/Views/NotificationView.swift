@@ -9,17 +9,14 @@ import Foundation
 import UserNotifications
 import SwiftUI
 
-// TODO: incorporate notifications into fridge, freezer, pantry
+
 struct NotificationView: View {
-  //@Binding var storage: [BoughtItem]
   var notificationCenter:UNUserNotificationCenter!
   var notificationDelegate: UNUserNotificationCenterDelegate
   
-  // storage: Binding<[BoughtItem]>
   init() {
     self.notificationCenter = UNUserNotificationCenter.current()
     self.notificationDelegate = NotificationDelegate()
-    //self._storage = storage
     setupNotification()
   }
   

@@ -142,9 +142,9 @@ struct CoreDataView: View {
       GroceryMapView()
         .tabItem{Image(systemName: "globe"); Text("Map") }
         .tag(4)
-      CounterList()
+      /*CounterList()
         .tabItem{Image(systemName: "globe"); Text("Map") }
-        .tag(5)
+        .tag(5)*/
     }
   }
   

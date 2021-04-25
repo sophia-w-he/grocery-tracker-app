@@ -12,7 +12,6 @@ import Combine
 // TODO: Assert values must be entered
 struct AddShoppingListItemCoreDataView: View {
   
-  //@Binding var shoppingList:[GroceryItem]
   @Binding var isPresented: Bool
   
   @State private var name: String = ""
@@ -91,21 +90,21 @@ struct AddShoppingListItemCoreDataView: View {
                     storage = "Fridge"
                   } label: {
                     Text("Fridge")
-                    //Image(systemName: "arrow.down.right.circle")
+                    Image(systemName: "thermometer")
                   }
                   Button {
                     storageLocation = .Freezer
                     storage = "Freezer"
                   } label: {
                     Text("Freezer")
-                    //Image(systemName: "arrow.up.and.down.circle")
+                    Image(systemName: "snow")
                   }
                   Button {
                     storageLocation = .Pantry
                     storage = "Pantry"
                   } label: {
                     Text("Pantry")
-                    //Image(systemName: "arrow.up.and.down.circle")
+                    Image(systemName: "table")
                   }
                 } label: {
                   HStack {
@@ -233,22 +232,8 @@ struct AddShoppingListItemCoreDataView: View {
 }
 
 
-/*
- FOR REFERENCE
- "name" : "banana",
- "imageName" : "banana.jpg",
- "onShoppingList" : true,
- "boughtItem" : false,
- "daysExpireTime" : 0,
- "weeksExpireTime" : 1,
- "monthsExpireTime" : 0,
- "yearsExpireTime" : 0,
- "storageLocation" : "Pantry",
- "quantity" : 5
- */
 
-
-// TODO: Assert values must be entered
+// Non core data view
 struct AddShoppingListItemView: View {
   @Binding var shoppingList:[GroceryItem]
   
@@ -315,21 +300,21 @@ struct AddShoppingListItemView: View {
                     storage = "Fridge"
                   } label: {
                     Text("Fridge")
-                    //Image(systemName: "arrow.down.right.circle")
+                    Image(systemName: "thermometer")
                   }
                   Button {
                     storageLocation = .Freezer
                     storage = "Freezer"
                   } label: {
                     Text("Freezer")
-                    //Image(systemName: "arrow.up.and.down.circle")
+                    Image(systemName: "snow")
                   }
                   Button {
                     storageLocation = .Pantry
                     storage = "Pantry"
                   } label: {
                     Text("Pantry")
-                    //Image(systemName: "arrow.up.and.down.circle")
+                    Image(systemName: "table")
                   }
                 } label: {
                   HStack {
@@ -341,7 +326,6 @@ struct AddShoppingListItemView: View {
                 Spacer(minLength: 25)
               }
               HStack {
-                // TODO: Use picker for expiration times
                 Spacer()
                 TextField("Qty", text: $qtyExpire)
                   .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -405,16 +389,12 @@ struct AddShoppingListItemView: View {
                 }
                 Spacer(minLength: 25)
               }
-              HStack {
-                // TODO: Upload image somehow
-              }
               
             }.padding(.leading)
             
           }.padding(.horizontal)
           .fixedSize(horizontal: false, vertical: true)
           VStack {
-            //Spacer(minLength: 5)
             Button(action: {
               // submit action
               self.itemSubmitted.toggle()

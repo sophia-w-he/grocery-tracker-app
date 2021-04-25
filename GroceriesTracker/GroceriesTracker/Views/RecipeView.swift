@@ -14,9 +14,14 @@ struct RecipeListView: View {
     entity: RecipeEntity.entity(),
     sortDescriptors: [
       NSSortDescriptor(keyPath: \RecipeEntity.name, ascending: true),]
-    //,predicate:  NSPredicate(format: "onShoppingList == true")
   ) var recipes: FetchedResults<RecipeEntity>
+  
+  @State private var isAddSheetShowing = false
   @State private var itemsToEdit = Set<String>()
+  @State var isEditMode: EditMode = .active
+  
+  @State var isEditing = false
+  @State var selection = Set<String>()
   
   var body: some View {
     NavigationView {
@@ -50,6 +55,39 @@ struct RecipeListView: View {
           }.foregroundColor(.black)
         }
       }
+      .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive))
+      .navigationBarItems(leading:
+                            Button(isEditing ? "Remove" : "Edit") {
+                              if !isEditing {
+                                self.isEditing.toggle()
+                              }else {
+                                itemsToEdit.forEach(){ item in
+                                  print(itemsToEdit)
+                                  
+                                  let recIndex = recipes.firstIndex(where: { $0.name! ==  item})
+                                  let rec = recipes[recIndex!]
+                                  
+                                  context.delete(rec)
+                                  let itemIndex = itemsToEdit.firstIndex(of: item)
+                                  itemsToEdit.remove(at:itemIndex!)
+                                  
+                                }
+                                self.isEditing.toggle()
+                                
+                                
+                                
+                              }
+                            },
+                          trailing: Button(isEditing ? "Cancel" : "Add") {
+                            if !isEditing {
+                              self.isAddSheetShowing.toggle()
+                            } else {
+                              self.isEditing.toggle()
+                            }
+                          }).sheet(isPresented: self.$isAddSheetShowing, content: {
+                            AddRecipeView(isPresented: $isAddSheetShowing)
+                            
+                          })
       
     }
   }

@@ -18,7 +18,7 @@ struct InventoryView: View {
       NotificationView()
       TabView(selection: $selection) {
         CoreDataFridgeView()
-          .tabItem{ //Image("fridge-icon");
+          .tabItem{
             Image(systemName: "thermometer");
             Text("Fridge") }
           .tag(1)
@@ -28,7 +28,9 @@ struct InventoryView: View {
         CoreDataPantryView()
           .tabItem{Image(systemName: "table"); Text("Pantry") }
           .tag(3)
-        /*FridgeView(fridge: $fridge)
+        
+        /*// non core data view
+         FridgeView(fridge: $fridge)
           .tabItem{ //Image("fridge-icon");
             Image(systemName: "thermometer");
             Text("Fridge") }

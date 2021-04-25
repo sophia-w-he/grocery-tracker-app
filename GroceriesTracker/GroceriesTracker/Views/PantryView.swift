@@ -9,40 +9,6 @@ import Foundation
 import SwiftUI
 import Combine
 
-struct PantryView: View {
-  @Binding var pantry: [BoughtItem]
-  @State private var isAddSheetShowing = false
-  var body: some View {
-    NavigationView {
-      VStack {
-        List(pantry, id: \.groceryItem.name) { item in
-          NavigationLink(destination: BoughtItemView(item: item), label: {
-            GroceryItemRowView(item: item.groceryItem)
-          })
-        }
-      }
-      .navigationBarTitleDisplayMode(.inline)
-       .toolbar { 
-            ToolbarItem(placement: .principal) {
-                VStack {
-                  Spacer()
-                  Text("Pantry").font(.system(size: 30, design: .serif))
-                  Spacer()
-                  Spacer()
-                  
-                }
-            }
-        }
-        .navigationBarItems(trailing: Button("Add") {
-            self.isAddSheetShowing.toggle()
-        }).sheet(isPresented: self.$isAddSheetShowing, content: {
-          AddStorageItemView(fridge: $pantry, isPresented: $isAddSheetShowing)
-        })
-    }
-  }
-  
-}
-
 // TODO QTY STEPPER
 struct CoreDataPantryView: View {
   @State var notificationCenter:UNUserNotificationCenter! = UNUserNotificationCenter.current()
@@ -123,6 +89,41 @@ struct CoreDataPantryView: View {
                           })
       
       
+    }
+  }
+  
+}
+
+// non core data view
+struct PantryView: View {
+  @Binding var pantry: [BoughtItem]
+  @State private var isAddSheetShowing = false
+  var body: some View {
+    NavigationView {
+      VStack {
+        List(pantry, id: \.groceryItem.name) { item in
+          NavigationLink(destination: BoughtItemView(item: item), label: {
+            GroceryItemRowView(item: item.groceryItem)
+          })
+        }
+      }
+      .navigationBarTitleDisplayMode(.inline)
+       .toolbar {
+            ToolbarItem(placement: .principal) {
+                VStack {
+                  Spacer()
+                  Text("Pantry").font(.system(size: 30, design: .serif))
+                  Spacer()
+                  Spacer()
+                  
+                }
+            }
+        }
+        .navigationBarItems(trailing: Button("Add") {
+            self.isAddSheetShowing.toggle()
+        }).sheet(isPresented: self.$isAddSheetShowing, content: {
+          AddStorageItemView(fridge: $pantry, isPresented: $isAddSheetShowing)
+        })
     }
   }
   

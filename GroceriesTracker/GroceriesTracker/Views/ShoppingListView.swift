@@ -153,16 +153,9 @@ struct CoreDataShoppingListView: View {
   @State var isEditing = false
   @State var selection = Set<String>()
 
-  
-  // var dataModel = MyGroceryTrackerCoreDataModel()
-  /*func delete(at offsets: IndexSet) {
-    shoppingList.remove(atOffsets: offsets)
-  }*/
-  
   var body: some View {
     NavigationView {
       ZStack {
-        //RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
         VStack {
           NotificationView()
           List(shoppingList, id: \.name!, selection: $itemsToEdit) { item in
@@ -252,36 +245,38 @@ struct CoreDataShoppingListView: View {
                                       //notifyDate.minute = 0
                                       NotificationView().setupAndFireNotification(date: notifyDate, item: groc.name!)
 
-                                      let bought = BoughtItem(groceryItem: grocItem)
+                                      // let bought = BoughtItem(groceryItem: grocItem)
                                       // print(bought)
                                       // bought.convertToManagedObject()
                                       
-                                      do {
+                                      /*do {
                                         try MyGroceryTrackerCoreDataModel.context.save()
                                       } catch {
                                         print("Error saving item to core data \(error)")
-                                      }
+                                      }*/
                                       
-                                      if grocItem.storageLocation == .Fridge {
+                                      /*if grocItem.storageLocation == .Fridge {
                                         fridge.append(bought)
                                       } else if grocItem.storageLocation == .Freezer {
                                         freezer.append(bought)
                                       } else if grocItem.storageLocation == .Pantry {
                                         pantry.append(bought)
-                                      }
+                                      }*/
                               
                                       //shoppingList.remove(at:grocIndex!)
                                       groc.onShoppingList = false
+
                                       do {
                                         try MyGroceryTrackerCoreDataModel.context.save()
                                       } catch {
                                         print("Error saving item to core data \(error)")
                                       }
-                                      
                                       let itemIndex = itemsToEdit.firstIndex(of: item)
                                       itemsToEdit.remove(at:itemIndex!)
+                                    
                                     }
                                     self.isEditing.toggle()
+
                                   }
                                 },
                               trailing: Button(isEditing ? "Delete" : "Add") {

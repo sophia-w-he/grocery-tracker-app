@@ -12,7 +12,6 @@ import Combine
 
 // TODO: ADD ASSERTS
 struct AddStorageItemCoreDataView: View {
-  //@Binding var fridge:[BoughtItem]
 
   @Binding var isPresented: Bool
   @Binding var notificationCenter:UNUserNotificationCenter!
@@ -133,21 +132,21 @@ struct AddStorageItemCoreDataView: View {
                     storage = "Fridge"
                   } label: {
                     Text("Fridge")
-                    //Image(systemName: "arrow.down.right.circle")
+                    Image(systemName: "thermometer")
                   }
                   Button {
                     storageLocation = .Freezer
                     storage = "Freezer"
                   } label: {
                     Text("Freezer")
-                    //Image(systemName: "arrow.up.and.down.circle")
+                    Image(systemName: "snow")
                   }
                   Button {
                     storageLocation = .Pantry
                     storage = "Pantry"
                   } label: {
                     Text("Pantry")
-                    //Image(systemName: "arrow.up.and.down.circle")
+                    Image(systemName: "table")
                   }
                 } label: {
                   HStack {
@@ -159,7 +158,6 @@ struct AddStorageItemCoreDataView: View {
                 Spacer(minLength: 25)
               }
               HStack {
-                // TODO: Use picker for expiration times
                 Spacer()
                 TextField("Qty", text: $qtyExpire)
                   .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -232,7 +230,7 @@ struct AddStorageItemCoreDataView: View {
           }.padding(.horizontal)
           .fixedSize(horizontal: false, vertical: true)
           VStack {
-            //Spacer(minLength: 5)
+            
             Button(action: {
               // submit action
               var groc = GroceryItem(name: name.lowercased(), imageName: name.lowercased().replacingOccurrences(of: "\\s", with: "", options: .regularExpression), onShoppingList: false, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0, expirationDate: nil)
@@ -271,15 +269,6 @@ struct AddStorageItemCoreDataView: View {
               opqueue.addOperation(op)
               opqueue.addOperation(op2)
               
-              //NotificationView().setupAndFireNotification(date: notifyDate, item: groc.name)
-              //self.itemSubmitted.toggle()
-              //isPresented = false
-              
-              //let bought = BoughtItem(groceryItem: groc)
-              //fridge.append(bought)
-              
-              //self.itemSubmitted.toggle()
-              //isPresented = false
             }, label: {
               Text("Add")
             })
@@ -300,7 +289,7 @@ struct AddStorageItemCoreDataView: View {
 }
 
 
-// TODO: ADD ASSERTS
+// Non core data view
 struct AddStorageItemView: View {
   @Binding var fridge:[BoughtItem]
   @Binding var isPresented: Bool
@@ -348,7 +337,6 @@ struct AddStorageItemView: View {
                 Spacer(minLength: 25)
               }
               HStack {
-                // TODO: Use picker for quantity
                 Spacer()
                 TextField("Quantity", text: $quantity)
                   .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -368,21 +356,18 @@ struct AddStorageItemView: View {
                     storage = "Fridge"
                   } label: {
                     Text("Fridge")
-                    //Image(systemName: "arrow.down.right.circle")
                   }
                   Button {
                     storageLocation = .Freezer
                     storage = "Freezer"
                   } label: {
                     Text("Freezer")
-                    //Image(systemName: "arrow.up.and.down.circle")
                   }
                   Button {
                     storageLocation = .Pantry
                     storage = "Pantry"
                   } label: {
                     Text("Pantry")
-                    //Image(systemName: "arrow.up.and.down.circle")
                   }
                 } label: {
                   HStack {

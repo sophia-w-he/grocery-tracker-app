@@ -3,7 +3,7 @@
 //  GroceriesTracker
 //
 //  Created by Sophia on 4/22/21.
-//
+//  Followed tutorial at https://www.youtube.com/watch?v=WTzBKOe7MmU
 
 import Foundation
 import SwiftUI
