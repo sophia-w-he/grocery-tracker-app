@@ -145,7 +145,7 @@ struct CoreDataShoppingListView: View {
       NSSortDescriptor(keyPath: \GroceryItemEntity.name, ascending: true),],
     predicate:  NSPredicate(format: "onShoppingList == true")
   ) var shoppingList: FetchedResults<GroceryItemEntity>
-  
+  @State private var name = ""
   @State private var isAddSheetShowing = false
   @State private var itemsToEdit = Set<String>()
   @State var isEditMode: EditMode = .active
@@ -308,7 +308,7 @@ struct CoreDataShoppingListView: View {
                                   }*/
                                 }
                               }).sheet(isPresented: self.$isAddSheetShowing, content: {
-                                AddShoppingListItemCoreDataView(isPresented: $isAddSheetShowing)
+                                AddShoppingListItemCoreDataView(isPresented: $isAddSheetShowing, name: $name)
                               })
               
           /*.background(NavigationConfigurator { nc in

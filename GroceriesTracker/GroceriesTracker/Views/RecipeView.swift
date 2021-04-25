@@ -116,6 +116,8 @@ struct RecipeCoreDataRowView: View {
 struct RecipeView: View {
   var item: Recipe
   var dataItem: RecipeEntity
+  @State private var isAddSheetShowing = false
+  @State private var ingredientName = ""
   
   var body: some View {
     VStack {
@@ -149,6 +151,19 @@ struct RecipeView: View {
               .aspectRatio(contentMode: .fit)
             }.frame(width: 20.0,height:20.0);
             Text(ingredient).font(.system(size: 25, design: .serif))
+            Spacer()
+            VStack {
+              Button(action: {
+                print("Button was tapped")
+                ingredientName = ingredient
+                self.isAddSheetShowing.toggle()
+                
+              }) {
+                Image(systemName: "plus.circle")
+                  //.frame(maxWidth: .infinity, maxHeight: .infinity)
+                  //.contentShape(Circle())
+              }.buttonStyle(PlainButtonStyle())
+            }
           }
         }
       }
@@ -159,7 +174,9 @@ struct RecipeView: View {
           Text(step).font(.system(size: 20, design: .serif))
         }
       }
-    }
+    }.sheet(isPresented: self.$isAddSheetShowing, content: {
+      AddShoppingListItemCoreDataView(isPresented: $isAddSheetShowing, name: $ingredientName)
+    })
   }
   
 }

@@ -14,7 +14,7 @@ struct AddShoppingListItemCoreDataView: View {
   
   @Binding var isPresented: Bool
   
-  @State private var name: String = ""
+  @Binding var name: String
   @State private var imageName: String = ""
   @State private var onShoppingList: Bool = true
   @State private var boughtItem: Bool = false
@@ -54,7 +54,7 @@ struct AddShoppingListItemCoreDataView: View {
               .aspectRatio(contentMode: .fit)
             }.frame(width: 30.0,height:30.0);
           }
-          Text("Add Item").font(.system(size: 30, design: .serif)).fontWeight(.bold)
+          Text("Add Shopping List Item").font(.system(size: 30, design: .serif)).fontWeight(.bold)
           HStack {
             VStack(alignment: .leading) {
               Text("Item Name: ").frame(maxHeight: .infinity).padding(.bottom, 4)

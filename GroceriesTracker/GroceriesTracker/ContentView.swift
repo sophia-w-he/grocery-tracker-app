@@ -29,7 +29,6 @@ struct JSONDataView: View {
   @Binding var freezer: [BoughtItem]
   @Binding var pantry: [BoughtItem]
   
-  //init(selection: Binding<Int>, model: Binding<PersonalGroceryTrackerModel>, shoppingList: Binding<[GroceryItem]>, fridge: Binding<[BoughtItem]>, freezer: Binding<[BoughtItem]>, pantry: Binding<[BoughtItem]>) {
   init(selection: Binding<Int>, model: Binding<PersonalGroceryTrackerModel>) {
     self._selection = selection
     self._model = model
@@ -43,7 +42,6 @@ struct JSONDataView: View {
   var body: some View {
     
     TabView(selection: $selection) {
-      // might need to make binding or pass in model
       ShoppingListView(shoppingList: $shoppingList, fridge: $fridge, freezer: $freezer, pantry: $pantry)
         .tabItem{ Text("Shopping List") }
         .tag(1)
@@ -62,17 +60,15 @@ struct JSONDataView: View {
   
 }
 
-// TODO:
-// - fix query for fridge
+
 struct CoreDataView: View {
-  //TODO
+
   @Binding var selection: Int
   @Binding var model: PersonalGroceryTrackerModel
   @Binding var fridge: [BoughtItem]
   @Binding var freezer: [BoughtItem]
   @Binding var pantry: [BoughtItem]
   
-  //init(selection: Binding<Int>, model: Binding<PersonalGroceryTrackerModel>, shoppingList: Binding<[GroceryItem]>, fridge: Binding<[BoughtItem]>, freezer: Binding<[BoughtItem]>, pantry: Binding<[BoughtItem]>) {
   init(selection: Binding<Int>, model: Binding<PersonalGroceryTrackerModel>) {
     self._selection = selection
     self._model = model
@@ -89,50 +85,15 @@ struct CoreDataView: View {
     sortDescriptors: [
       NSSortDescriptor(keyPath: \GroceryItemEntity.name, ascending: true),
   ]) var shoppingList: FetchedResults<GroceryItemEntity>
-  
-  // TODO: FIX THIS
-  /*@FetchRequest(
-    entity: BoughtItemEntity.entity(),
-    sortDescriptors: [
-      NSSortDescriptor(keyPath: \BoughtItemEntity.expirationDate, ascending: true),
-  ],
-    predicate: NSPredicate(format: "SUBQUERY(groceryItem, $groceryItem, $groceryItem.storageLocation == 'Fridge').@count > 0")
-    //predicate:  NSPredicate(format: "item.storageLocation == %@", "Fridge")
-  ) var myFridge: FetchedResults<BoughtItemEntity>*/
-  
-  /*@FetchRequest(
-    entity: RecipeEntity.entity(),
-    sortDescriptors: [
-      NSSortDescriptor(keyPath: \RecipeEntity.name, ascending: true),
-  ]) var recipes: FetchedResults<RecipeEntity>*/
+
   
   var body: some View {
     TabView(selection: $selection) {
       CoreDataShoppingListView(fridge: $fridge, freezer: $freezer, pantry: $pantry)
-        .tabItem{ /*VStack{ Image("cart")
-                  .resizable()
-                  .aspectRatio(1, contentMode: .fit)
-          }.frame(width: 5.0,height:5.0);*/
-          //Image("groc-cart-icon");
+        .tabItem{ 
           Image(systemName: "cart");
           Text("Grocery List") }
         .tag(1)
-      /*CoreDataFridgeView()
-        .tabItem{ //Image("fridge-icon");
-          Image(systemName: "thermometer");
-          Text("Fridge") }
-        .tag(2)
-      /*FridgeView(fridge: $fridge)
-        .tabItem{ //Image("fridge-icon");
-          Image(systemName: "thermometer");
-          Text("Fridge") }
-        .tag(2)*/
-      FreezerView(freezer: $freezer)
-        .tabItem{ Image(systemName: "snow");Text("Freezer") }
-        .tag(3)
-      PantryView(pantry: $pantry)
-        .tabItem{Image(systemName: "table"); Text("Pantry") }
-        .tag(4)*/
       InventoryView(fridge: $fridge, freezer: $freezer, pantry: $pantry)
         .tabItem{Image(systemName: "list.number"); Text("Inventory") }
         .tag(2)

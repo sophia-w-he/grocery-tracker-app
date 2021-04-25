@@ -58,9 +58,8 @@ struct AddRecipeView: View {
           }.padding(.horizontal)
           .fixedSize(horizontal: false, vertical: true)
           VStack {
-            Spacer()
-            Spacer()
-            Text("Ingredients")
+            Spacer(minLength: 25)
+            Text("Ingredients:")
             ScrollView {
               ForEach(self.ingredients, id: \.self) { ingred in
                 Text(ingred)
@@ -81,7 +80,7 @@ struct AddRecipeView: View {
             }.background(Color.clear)
             .listStyle(InsetGroupedListStyle())
             Spacer()
-            Text("Recipe Steps")
+            Text("Recipe Steps:")
             ScrollView {
               ForEach(self.steps, id: \.self) { ingred in
                 Text(ingred)
