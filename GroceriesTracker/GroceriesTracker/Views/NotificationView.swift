@@ -11,14 +11,15 @@ import SwiftUI
 
 // TODO: incorporate notifications into fridge, freezer, pantry
 struct NotificationView: View {
-  @Binding var storage: [BoughtItem]
+  //@Binding var storage: [BoughtItem]
   var notificationCenter:UNUserNotificationCenter!
   var notificationDelegate: UNUserNotificationCenterDelegate
-
-  init(storage: Binding<[BoughtItem]>) {
+  
+  // storage: Binding<[BoughtItem]>
+  init() {
     self.notificationCenter = UNUserNotificationCenter.current()
     self.notificationDelegate = NotificationDelegate()
-    self._storage = storage
+    //self._storage = storage
     setupNotification()
   }
   
@@ -31,7 +32,7 @@ struct NotificationView: View {
     })
   }
   
-  func setupAndFireNotification() {
+  func setupAndFireNotification(date: DateComponents, item: String) {
     
     let options:UNAuthorizationOptions = [.alert, .sound]
     notificationCenter.requestAuthorization(options: options, completionHandler: {
@@ -41,7 +42,7 @@ struct NotificationView: View {
     })
     
     let content = UNMutableNotificationContent()
-    content.title = "Item Expiring Soon!"
+    content.title = "Item Expiring: " + item
     content.body = "Consume or dispose of your food!"
     content.sound = UNNotificationSound.default
     
@@ -53,8 +54,10 @@ struct NotificationView: View {
     content.categoryIdentifier = categoryId
     
     let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+    //let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+    print(date)
 
-    let notification = UNNotificationRequest(identifier: "Assignment2Notification", content: content, trigger: trigger)
+    let notification = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
 
     notificationCenter.add(notification, withCompletionHandler:
     {
@@ -68,7 +71,7 @@ struct NotificationView: View {
   }
   
   var body: some View {
-    Text("")
+    EmptyView()
   }
   
 }

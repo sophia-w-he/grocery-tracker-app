@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EC3243FE25E701B000C6843C"
-               BuildableName = "GroceriesTracker.app"
-               BlueprintName = "GroceriesTracker"
-               ReferencedContainer = "container:GroceriesTracker.xcodeproj">
+               BuildableName = "GroceryTracker.app"
+               BlueprintName = "GroceryTracker"
+               ReferencedContainer = "container:GroceryTracker.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EC32441425E701B500C6843C"
-               BuildableName = "GroceriesTrackerTests.xctest"
-               BlueprintName = "GroceriesTrackerTests"
-               ReferencedContainer = "container:GroceriesTracker.xcodeproj">
+               BuildableName = "GroceryTrackerTests.xctest"
+               BlueprintName = "GroceryTrackerTests"
+               ReferencedContainer = "container:GroceryTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EC32441F25E701B500C6843C"
-               BuildableName = "GroceriesTrackerUITests.xctest"
-               BlueprintName = "GroceriesTrackerUITests"
-               ReferencedContainer = "container:GroceriesTracker.xcodeproj">
+               BuildableName = "GroceryTrackerUITests.xctest"
+               BlueprintName = "GroceryTrackerUITests"
+               ReferencedContainer = "container:GroceryTracker.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EC3243FE25E701B000C6843C"
-            BuildableName = "GroceriesTracker.app"
-            BlueprintName = "GroceriesTracker"
-            ReferencedContainer = "container:GroceriesTracker.xcodeproj">
+            BuildableName = "GroceryTracker.app"
+            BlueprintName = "GroceryTracker"
+            ReferencedContainer = "container:GroceryTracker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <LocationScenarioReference
@@ -86,9 +86,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EC3243FE25E701B000C6843C"
-            BuildableName = "GroceriesTracker.app"
-            BlueprintName = "GroceriesTracker"
-            ReferencedContainer = "container:GroceriesTracker.xcodeproj">
+            BuildableName = "GroceryTracker.app"
+            BlueprintName = "GroceryTracker"
+            ReferencedContainer = "container:GroceryTracker.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

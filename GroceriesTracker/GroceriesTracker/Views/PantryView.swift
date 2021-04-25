@@ -45,6 +45,8 @@ struct PantryView: View {
 
 // TODO QTY STEPPER
 struct CoreDataPantryView: View {
+  @State var notificationCenter:UNUserNotificationCenter! = UNUserNotificationCenter.current()
+  @State var notificationDelegate: UNUserNotificationCenterDelegate = NotificationDelegate()
   
   @FetchRequest(
     entity: GroceryItemEntity.entity(),
@@ -117,7 +119,7 @@ struct CoreDataPantryView: View {
                               self.isEditing.toggle()
                             }
                           }).sheet(isPresented: self.$isAddSheetShowing, content: {
-                            AddStorageItemCoreDataView(isPresented: $isAddSheetShowing)
+                            AddStorageItemCoreDataView(isPresented: $isAddSheetShowing, notificationCenter: $notificationCenter, notificationDelegate: $notificationDelegate)
                           })
       
       

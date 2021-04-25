@@ -13,7 +13,11 @@ import Combine
 // TODO: ADD ASSERTS
 struct AddStorageItemCoreDataView: View {
   //@Binding var fridge:[BoughtItem]
+
+  
   @Binding var isPresented: Bool
+  @Binding var notificationCenter:UNUserNotificationCenter!
+  @Binding var notificationDelegate: UNUserNotificationCenterDelegate 
   
   @State private var name: String = ""
   @State private var imageName: String = ""
@@ -33,6 +37,53 @@ struct AddStorageItemCoreDataView: View {
   
   @State private var storage = ""
   @State private var timeDescriptor = ""
+  
+  func setupNotification() {
+    let options:UNAuthorizationOptions = [.alert, .sound]
+    notificationCenter.requestAuthorization(options: options, completionHandler: {
+       success, error in
+        guard success == true else { print("Access not granted or error"); return }
+        print("notification access granted")
+    })
+  }
+  
+  func setupAndFireNotification(date: DateComponents, item: String) {
+    
+    let options:UNAuthorizationOptions = [.alert, .sound]
+    notificationCenter.requestAuthorization(options: options, completionHandler: {
+       success, error in
+        guard success == true else { print("Access not granted or error"); return }
+        print("notification access granted")
+    })
+    
+    let content = UNMutableNotificationContent()
+    content.title = "Item Expiring: " + item
+    content.body = "Consume or dispose of your food!"
+    content.sound = UNNotificationSound.default
+    
+    let categoryId = "edu.jhu.epp.Grade-Notification-Interface.notification"
+
+    let category = UNNotificationCategory(identifier: categoryId, actions: [], intentIdentifiers: [], options: [])
+    notificationCenter.setNotificationCategories([category])
+
+    content.categoryIdentifier = categoryId
+    
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+    //let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: false)
+    print(date)
+
+    let notification = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+    notificationCenter.add(notification, withCompletionHandler:
+    {
+        error in
+        if let error = error
+        {
+            print("Error firing notification: \(error.localizedDescription)")
+        }
+        print("adding to center")
+    })
+  }
   
   var body: some View {
     if !itemSubmitted {
@@ -196,6 +247,11 @@ struct AddStorageItemCoreDataView: View {
               // submit action
               var groc = GroceryItem(name: name.lowercased(), imageName: name.lowercased().replacingOccurrences(of: "\\s", with: "", options: .regularExpression), onShoppingList: false, daysExpireTime: daysExpireTime, weeksExpireTime: weeksExpireTime, monthsExpireTime: monthsExpireTime, yearsExpireTime: yearsExpireTime, storageLocation: storageLocation, quantity: Int(quantity) ?? 0, expirationDate: nil)
               groc.setExpirationDate()
+              
+              var notifyDate = Calendar.current.dateComponents([.year, .month, .day], from: groc.expirationDate!)
+              notifyDate.hour = 10
+              notifyDate.minute = 0
+
               groc.convertToManagedObject()
               
               do {
@@ -204,10 +260,36 @@ struct AddStorageItemCoreDataView: View {
                 print("Error saving item to core data \(error)")
               }
               
+              
+              let op = BlockOperation {
+                setupAndFireNotification(date: notifyDate, item: groc.name)
+                //sleep(1)
+              }
+              let op2 = BlockOperation {
+                self.itemSubmitted.toggle()
+                isPresented = false
+              }
+              
+              op2.addDependency(op)
+              
+              //op.addExecutionBlock {
+                //self.itemSubmitted.toggle()
+                //isPresented = false
+              //}
+              
+              let opqueue = OperationQueue()
+              opqueue.addOperation(op)
+              opqueue.addOperation(op2)
+              
+              //NotificationView().setupAndFireNotification(date: notifyDate, item: groc.name)
+              //self.itemSubmitted.toggle()
+              //isPresented = false
+              
               //let bought = BoughtItem(groceryItem: groc)
               //fridge.append(bought)
-              self.itemSubmitted.toggle()
-              isPresented = false
+              
+              //self.itemSubmitted.toggle()
+              //isPresented = false
             }, label: {
               Text("Add")
             })

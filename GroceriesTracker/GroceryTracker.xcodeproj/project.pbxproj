@@ -30,6 +30,7 @@
 		EC596AF02634AADA008D6210 /* InventoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC596AEF2634AADA008D6210 /* InventoryView.swift */; };
 		EC596AF52634B2D0008D6210 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC596AF42634B2D0008D6210 /* RecipeView.swift */; };
 		EC596B032634F223008D6210 /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = EC596AFF2634EFEE008D6210 /* recipes.json */; };
+		EC596B08263522CE008D6210 /* AddRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC596B07263522CD008D6210 /* AddRecipeView.swift */; };
 		ECBFF5DB261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5DA261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift */; };
 		ECBFF5E3261D17C100FBDCDE /* BoughtItem+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */; };
 		ECBFF5E8261D17E400FBDCDE /* GroceryItem+CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBFF5E7261D17E400FBDCDE /* GroceryItem+CoreData.swift */; };
@@ -61,7 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		EC3243FF25E701B000C6843C /* GroceriesTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroceriesTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC3243FF25E701B000C6843C /* GroceryTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroceryTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC32440225E701B000C6843C /* GroceriesTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceriesTrackerApp.swift; sourceTree = "<group>"; };
 		EC32440425E701B000C6843C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EC32440625E701B500C6843C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -69,10 +70,10 @@
 		EC32440B25E701B500C6843C /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		EC32440E25E701B500C6843C /* GroceriesTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GroceriesTracker.xcdatamodel; sourceTree = "<group>"; };
 		EC32441025E701B500C6843C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC32441525E701B500C6843C /* GroceriesTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroceriesTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC32441525E701B500C6843C /* GroceryTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroceryTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC32441925E701B500C6843C /* GroceriesTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceriesTrackerTests.swift; sourceTree = "<group>"; };
 		EC32441B25E701B500C6843C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC32442025E701B500C6843C /* GroceriesTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroceriesTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC32442025E701B500C6843C /* GroceryTrackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroceryTrackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC32442425E701B500C6843C /* GroceriesTrackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceriesTrackerUITests.swift; sourceTree = "<group>"; };
 		EC32442625E701B500C6843C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC32443525E7025D00C6843C /* GroceriesTrackerPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = GroceriesTrackerPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -91,6 +92,7 @@
 		EC596AEF2634AADA008D6210 /* InventoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryView.swift; sourceTree = "<group>"; };
 		EC596AF42634B2D0008D6210 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		EC596AFF2634EFEE008D6210 /* recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
+		EC596B07263522CD008D6210 /* AddRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
 		ECBFF5DA261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGroceryTrackerCoreDataModel.swift; sourceTree = "<group>"; };
 		ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoughtItem+CoreData.swift"; sourceTree = "<group>"; };
 		ECBFF5E7261D17E400FBDCDE /* GroceryItem+CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GroceryItem+CoreData.swift"; sourceTree = "<group>"; };
@@ -144,9 +146,9 @@
 		EC32440025E701B000C6843C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EC3243FF25E701B000C6843C /* GroceriesTracker.app */,
-				EC32441525E701B500C6843C /* GroceriesTrackerTests.xctest */,
-				EC32442025E701B500C6843C /* GroceriesTrackerUITests.xctest */,
+				EC3243FF25E701B000C6843C /* GroceryTracker.app */,
+				EC32441525E701B500C6843C /* GroceryTrackerTests.xctest */,
+				EC32442025E701B500C6843C /* GroceryTrackerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,6 +251,7 @@
 				EC48A8D4263372450077F866 /* NotificationView.swift */,
 				EC596AEF2634AADA008D6210 /* InventoryView.swift */,
 				EC596AF42634B2D0008D6210 /* RecipeView.swift */,
+				EC596B07263522CD008D6210 /* AddRecipeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -269,9 +272,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EC3243FE25E701B000C6843C /* GroceriesTracker */ = {
+		EC3243FE25E701B000C6843C /* GroceryTracker */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EC32442925E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceriesTracker" */;
+			buildConfigurationList = EC32442925E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceryTracker" */;
 			buildPhases = (
 				EC3243FB25E701B000C6843C /* Sources */,
 				EC3243FC25E701B000C6843C /* Frameworks */,
@@ -281,14 +284,14 @@
 			);
 			dependencies = (
 			);
-			name = GroceriesTracker;
+			name = GroceryTracker;
 			productName = GroceriesTracker;
-			productReference = EC3243FF25E701B000C6843C /* GroceriesTracker.app */;
+			productReference = EC3243FF25E701B000C6843C /* GroceryTracker.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EC32441425E701B500C6843C /* GroceriesTrackerTests */ = {
+		EC32441425E701B500C6843C /* GroceryTrackerTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EC32442C25E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceriesTrackerTests" */;
+			buildConfigurationList = EC32442C25E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceryTrackerTests" */;
 			buildPhases = (
 				EC32441125E701B500C6843C /* Sources */,
 				EC32441225E701B500C6843C /* Frameworks */,
@@ -299,14 +302,14 @@
 			dependencies = (
 				EC32441725E701B500C6843C /* PBXTargetDependency */,
 			);
-			name = GroceriesTrackerTests;
+			name = GroceryTrackerTests;
 			productName = GroceriesTrackerTests;
-			productReference = EC32441525E701B500C6843C /* GroceriesTrackerTests.xctest */;
+			productReference = EC32441525E701B500C6843C /* GroceryTrackerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EC32441F25E701B500C6843C /* GroceriesTrackerUITests */ = {
+		EC32441F25E701B500C6843C /* GroceryTrackerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EC32442F25E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceriesTrackerUITests" */;
+			buildConfigurationList = EC32442F25E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceryTrackerUITests" */;
 			buildPhases = (
 				EC32441C25E701B500C6843C /* Sources */,
 				EC32441D25E701B500C6843C /* Frameworks */,
@@ -317,9 +320,9 @@
 			dependencies = (
 				EC32442225E701B500C6843C /* PBXTargetDependency */,
 			);
-			name = GroceriesTrackerUITests;
+			name = GroceryTrackerUITests;
 			productName = GroceriesTrackerUITests;
-			productReference = EC32442025E701B500C6843C /* GroceriesTrackerUITests.xctest */;
+			productReference = EC32442025E701B500C6843C /* GroceryTrackerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -344,7 +347,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EC3243FA25E701B000C6843C /* Build configuration list for PBXProject "GroceriesTracker" */;
+			buildConfigurationList = EC3243FA25E701B000C6843C /* Build configuration list for PBXProject "GroceryTracker" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -357,9 +360,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EC3243FE25E701B000C6843C /* GroceriesTracker */,
-				EC32441425E701B500C6843C /* GroceriesTrackerTests */,
-				EC32441F25E701B500C6843C /* GroceriesTrackerUITests */,
+				EC3243FE25E701B000C6843C /* GroceryTracker */,
+				EC32441425E701B500C6843C /* GroceryTrackerTests */,
+				EC32441F25E701B500C6843C /* GroceryTrackerUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -404,6 +407,7 @@
 				EC48A8C3263252650077F866 /* GroceryMapView.swift in Sources */,
 				EC32447D25EC8AC300C6843C /* ShoppingListView.swift in Sources */,
 				EC32443F25E702D400C6843C /* GroceryItem.swift in Sources */,
+				EC596B08263522CE008D6210 /* AddRecipeView.swift in Sources */,
 				ECFFE61C2606D15100605A4F /* FridgeView.swift in Sources */,
 				ECFFE6212606D70600605A4F /* AddStorageItemView.swift in Sources */,
 				ECBFF5E3261D17C100FBDCDE /* BoughtItem+CoreData.swift in Sources */,
@@ -449,12 +453,12 @@
 /* Begin PBXTargetDependency section */
 		EC32441725E701B500C6843C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EC3243FE25E701B000C6843C /* GroceriesTracker */;
+			target = EC3243FE25E701B000C6843C /* GroceryTracker */;
 			targetProxy = EC32441625E701B500C6843C /* PBXContainerItemProxy */;
 		};
 		EC32442225E701B500C6843C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EC3243FE25E701B000C6843C /* GroceriesTracker */;
+			target = EC3243FE25E701B000C6843C /* GroceryTracker */;
 			targetProxy = EC32442125E701B500C6843C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -638,7 +642,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GroceriesTracker.app/GroceriesTracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GroceryTracker.app/GroceryTracker";
 			};
 			name = Debug;
 		};
@@ -660,7 +664,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GroceriesTracker.app/GroceriesTracker";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GroceryTracker.app/GroceryTracker";
 			};
 			name = Release;
 		};
@@ -707,7 +711,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EC3243FA25E701B000C6843C /* Build configuration list for PBXProject "GroceriesTracker" */ = {
+		EC3243FA25E701B000C6843C /* Build configuration list for PBXProject "GroceryTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EC32442725E701B500C6843C /* Debug */,
@@ -716,7 +720,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EC32442925E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceriesTracker" */ = {
+		EC32442925E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceryTracker" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EC32442A25E701B500C6843C /* Debug */,
@@ -725,7 +729,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EC32442C25E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceriesTrackerTests" */ = {
+		EC32442C25E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceryTrackerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EC32442D25E701B500C6843C /* Debug */,
@@ -734,7 +738,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EC32442F25E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceriesTrackerUITests" */ = {
+		EC32442F25E701B500C6843C /* Build configuration list for PBXNativeTarget "GroceryTrackerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EC32443025E701B500C6843C /* Debug */,

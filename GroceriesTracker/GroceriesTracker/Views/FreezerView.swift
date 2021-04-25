@@ -50,6 +50,8 @@ struct FreezerView: View {
 
 // TODO QTY STEPPER
 struct CoreDataFreezerView: View {
+  @State var notificationCenter:UNUserNotificationCenter! = UNUserNotificationCenter.current()
+  @State var notificationDelegate: UNUserNotificationCenterDelegate = NotificationDelegate()
   
   @FetchRequest(
     entity: GroceryItemEntity.entity(),
@@ -122,7 +124,8 @@ struct CoreDataFreezerView: View {
                               self.isEditing.toggle()
                             }
                           }).sheet(isPresented: self.$isAddSheetShowing, content: {
-                            AddStorageItemCoreDataView(isPresented: $isAddSheetShowing)
+                            AddStorageItemCoreDataView(isPresented: $isAddSheetShowing, notificationCenter: $notificationCenter, notificationDelegate: $notificationDelegate)
+
                           })
       
       

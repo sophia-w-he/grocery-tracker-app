@@ -15,6 +15,7 @@ struct InventoryView: View {
   @State private var selection = 1
   var body: some View {
     VStack {
+      NotificationView()
       TabView(selection: $selection) {
         CoreDataFridgeView()
           .tabItem{ //Image("fridge-icon");

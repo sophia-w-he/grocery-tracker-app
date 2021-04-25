@@ -125,6 +125,7 @@ struct CoreDataShoppingListView: View {
     self._fridge = fridge
     self._freezer = freezer
     self._pantry = pantry
+    //NotificationView().setupNotification()
     // Emerald
     //UINavigationBar.appearance().barTintColor = UIColor(red: 80 / 255, green: 200 / 255, blue: 120 / 255, alpha: 1)
     // pistachio
@@ -163,11 +164,13 @@ struct CoreDataShoppingListView: View {
       ZStack {
         //RadialGradient(gradient: Gradient(colors: [.orange, .red]), center: .center, startRadius: 100, endRadius: 470)
         VStack {
+          NotificationView()
           List(shoppingList, id: \.name!, selection: $itemsToEdit) { item in
             let grocItem = GroceryItem(groceryItemEntity: MyGroceryTrackerCoreDataModel.getGroceryItemWith(name: item.name!)!)
             NavigationLink(destination: GroceryItemCoreDataView(item: grocItem, dataItem: item), label: {
               GroceryItemCoreDataRowView(item: grocItem, dataItem: item)
             })
+            
             /*ZStack {
 
               HStack{
@@ -239,6 +242,10 @@ struct CoreDataShoppingListView: View {
                                       groc.expirationDate = grocItem.expirationDate!;
                                       print("groc.expirationDate")
                                       print(groc.expirationDate!)
+                                      var notifyDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: grocItem.expirationDate!)
+                                      //notifyDate.hour = 22
+                                      notifyDate.minute! += 1
+                                      NotificationView().setupAndFireNotification(date: notifyDate, item: groc.name!)
 
                                       let bought = BoughtItem(groceryItem: grocItem)
                                       // print(bought)

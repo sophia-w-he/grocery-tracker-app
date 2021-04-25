@@ -59,7 +59,8 @@ struct CoreDataFridgeView: View {
     //,predicate: NSPredicate(format: "SUBQUERY(groceryItem, $groceryItem, $groceryItem.storageLocation == 'Fridge').@count > 0")
     //predicate:  NSPredicate(format: "item.storageLocation == %@", "Fridge")
   ) var fridge: FetchedResults<GroceryItemEntity>*/
-  
+  @State var notificationCenter:UNUserNotificationCenter! = UNUserNotificationCenter.current()
+  @State var notificationDelegate: UNUserNotificationCenterDelegate = NotificationDelegate()
   @FetchRequest(
     entity: GroceryItemEntity.entity(),
     sortDescriptors: [
@@ -149,7 +150,8 @@ struct CoreDataFridgeView: View {
                               self.isEditing.toggle()
                             }
                           }).sheet(isPresented: self.$isAddSheetShowing, content: {
-                            AddStorageItemCoreDataView(isPresented: $isAddSheetShowing)
+                            AddStorageItemCoreDataView(isPresented: $isAddSheetShowing, notificationCenter: $notificationCenter, notificationDelegate: $notificationDelegate)
+
                           })
       
       
