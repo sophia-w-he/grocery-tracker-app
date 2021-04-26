@@ -79,7 +79,8 @@ struct AddRecipeView: View {
               
             }.background(Color.clear)
             .listStyle(InsetGroupedListStyle())
-            Spacer()
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
+            //Spacer()
             Text("Recipe Steps:")
             ScrollView {
               ForEach(self.steps, id: \.self) { ingred in
