@@ -7,6 +7,8 @@
 import Foundation
 import CoreData
 
+// core data bought item not used
+// expiry date initialized with internal grocery item function
 extension BoughtItem {
   //  let groceryItem: GroceryItem
   //  var expirationDate: Date

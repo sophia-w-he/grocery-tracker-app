@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-// TODO QTY STEPPER
+// Shows pantry contents
 struct CoreDataPantryView: View {
   @State var notificationCenter:UNUserNotificationCenter! = UNUserNotificationCenter.current()
   @State var notificationDelegate: UNUserNotificationCenterDelegate = NotificationDelegate()

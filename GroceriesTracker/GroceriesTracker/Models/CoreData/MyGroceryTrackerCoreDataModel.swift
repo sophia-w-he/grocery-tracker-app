@@ -11,21 +11,6 @@ import CoreData
 
 struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
   
-  //var testData = GroceryTrackerModelTestData()
-  //var testModel = MyGroceryTrackerModel(myShoppingList: testData.myShoppingList!, myFridge: testData.myFridge!, myFreezer: testData.myFreezer!, myPantry: testData.myPantry!, myRecipes: testData.myRecipes!)
-  
-/*
-  var myShoppingList: [GroceryItem] { return [] }
-  
-  var myFridge: [BoughtItem] { return [] }
-  
-  var myFreezer: [BoughtItem] { return [] }
-  
-  var myPantry: [BoughtItem] { return [] }
-  
-  var myRecipes: [Recipe] { return [] }
- */
-  
   var myShoppingList: [GroceryItem]
   
   var myFridge: [BoughtItem]
@@ -40,7 +25,7 @@ struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
   let testData = GroceryTrackerModelTestData()
   
   func emptyDB() {
-    //TODO
+
     let groceryItemFetchRequest: NSFetchRequest<NSFetchRequestResult> = GroceryItemEntity.fetchRequest()
     let groceryItemDeleteRequest = NSBatchDeleteRequest(fetchRequest: groceryItemFetchRequest)
     
@@ -61,7 +46,6 @@ struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
   }
   
   func loadAllDatabaseData() {
-    //TODO
     emptyDB()
     loadShoppingListFromJSON()
     loadRecipesFromJSON() 
@@ -126,7 +110,6 @@ struct MyGroceryTrackerCoreDataModel: PersonalGroceryTrackerModel {
     
     do {
       let recipe = try MyGroceryTrackerCoreDataModel.context.fetch(request).first
-      print(recipe)
       return recipe
     } catch {
       print("fetch failed")

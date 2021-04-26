@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 
-// TODO: ADD ASSERTS
+// View to add new item to inventory (fridge, freezer, pantry)
 struct AddStorageItemCoreDataView: View {
 
   @Binding var isPresented: Bool
@@ -112,7 +112,6 @@ struct AddStorageItemCoreDataView: View {
                 Spacer(minLength: 25)
               }
               HStack {
-                // TODO: Use picker for quantity
                 Spacer()
                 TextField("Quantity", text: $quantity)
                   .textFieldStyle(RoundedBorderTextFieldStyle())

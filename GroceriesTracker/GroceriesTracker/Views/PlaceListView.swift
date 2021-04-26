@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import MapKit
 
+// shows places found via map search
 struct PlaceListView: View {
   
   let landmarks: [Landmark]

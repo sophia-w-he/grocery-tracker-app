@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+// non-core data views commented out
+// tab view for fridge, freezer, and pantry
 struct InventoryView: View {
   @Binding var fridge: [BoughtItem]
   @Binding var freezer: [BoughtItem]

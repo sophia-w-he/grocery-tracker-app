@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-// TODO: Assert values must be entered
+// View to add an item to the shopping list
 struct AddShoppingListItemCoreDataView: View {
   
   @Binding var isPresented: Bool

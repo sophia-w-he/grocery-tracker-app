@@ -19,9 +19,6 @@ struct MyGroceryTrackerModel: PersonalGroceryTrackerModel {
   
   mutating func addToFridge(bought: BoughtItem) { 
     myFridge.append(bought)
-    /*if let index = myShoppingList.firstIndex(of: bought.groceryItem) {
-        myShoppingList.remove(at: index)
-    }*/
   } 
 
 }

@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// View that lists my recipes - uses core data
 struct RecipeListView: View {
   @Environment(\.managedObjectContext) var context
   @FetchRequest(
@@ -113,6 +114,7 @@ struct RecipeCoreDataRowView: View {
   
 }
 
+// shows individual recipe
 struct RecipeView: View {
   var item: Recipe
   var dataItem: RecipeEntity

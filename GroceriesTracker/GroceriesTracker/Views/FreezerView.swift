@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 
-// TODO QTY STEPPER
+// Shows freezer contents
 struct CoreDataFreezerView: View {
   @State var notificationCenter:UNUserNotificationCenter! = UNUserNotificationCenter.current()
   @State var notificationDelegate: UNUserNotificationCenterDelegate = NotificationDelegate()

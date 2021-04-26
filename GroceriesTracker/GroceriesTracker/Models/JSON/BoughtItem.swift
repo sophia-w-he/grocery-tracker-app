@@ -7,6 +7,8 @@
 
 import Foundation
 
+// struct used in non-core data views
+// initializes an expiration date based on grocery item expiration time
 struct BoughtItem {
   
   let groceryItem: GroceryItem

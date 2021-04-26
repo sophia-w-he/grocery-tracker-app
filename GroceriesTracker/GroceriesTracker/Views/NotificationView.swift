@@ -9,7 +9,9 @@ import Foundation
 import UserNotifications
 import SwiftUI
 
-
+// used for notifications
+// for demo purposes, sets the time of notification to one min from
+// current time (demo for if the expiration time is 0 days/months/weeks/years)
 struct NotificationView: View {
   var notificationCenter:UNUserNotificationCenter!
   var notificationDelegate: UNUserNotificationCenterDelegate

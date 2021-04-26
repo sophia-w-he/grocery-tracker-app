@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// View to add a recipe to my recipes
 struct AddRecipeView: View {
   
   @Binding var isPresented: Bool
@@ -109,7 +110,7 @@ struct AddRecipeView: View {
             
             Button(action: {
               // submit action
-              var rec = Recipe(name: name.lowercased(), imageName: name.lowercased().replacingOccurrences(of: "\\s", with: "", options: .regularExpression), ingredients: [], recipeSteps: steps, ingredientNames: ingredients)
+              var rec = Recipe(name: name.lowercased(), imageName: name.lowercased().replacingOccurrences(of: "\\s", with: "", options: .regularExpression), recipeSteps: steps, ingredientNames: ingredients)
               
               
               rec.convertToManagedObject()

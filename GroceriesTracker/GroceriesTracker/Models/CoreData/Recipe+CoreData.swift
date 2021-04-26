@@ -20,7 +20,6 @@ extension Recipe {
     let recipeEntity = RecipeEntity(context: PersistenceController.shared.container.viewContext)
     recipeEntity.name = self.name
     recipeEntity.imageName = self.imageName
-    recipeEntity.ingredients = NSSet()
     recipeEntity.recipeSteps = self.recipeSteps
     recipeEntity.ingredientNames = self.ingredientNames
     return recipeEntity
@@ -30,15 +29,6 @@ extension Recipe {
   init(recipeEntity: RecipeEntity) {
     self.name = recipeEntity.name!
     self.imageName = recipeEntity.imageName!
-    self.ingredients = []
-    var tempIngredients: [GroceryItem] = []
-    for item in recipeEntity.ingredients!.allObjects as! [GroceryItemEntity] {
-      
-      let grocItem = GroceryItem(groceryItemEntity: item)
-      tempIngredients.append(grocItem)
-    }
-    self.ingredients = tempIngredients
-    
     self.recipeSteps = recipeEntity.recipeSteps!
     self.ingredientNames = recipeEntity.ingredientNames!
     

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-// TODO QTY STEPPER
+// Individual grocery item view
 struct GroceryItemCoreDataView: View {
   var item: GroceryItem
   var dataItem: GroceryItemEntity

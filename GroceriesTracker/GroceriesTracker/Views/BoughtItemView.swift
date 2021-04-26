@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+// shows bought/inventory item
+// core data uses grocery item struct
 struct BoughtItemCoreDataView: View {
   var item: GroceryItem
   var dataItem: GroceryItemEntity
@@ -96,6 +98,7 @@ struct BoughtItemCoreDataView: View {
 
 
 // non core data view
+// uses bought item struct
 struct BoughtItemView: View {
   var item: BoughtItem
   var expDate: String

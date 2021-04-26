@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-// TODO QTY STEPPER
+// Shows fridge contents
 struct CoreDataFridgeView: View {
   
   @State var notificationCenter:UNUserNotificationCenter! = UNUserNotificationCenter.current()

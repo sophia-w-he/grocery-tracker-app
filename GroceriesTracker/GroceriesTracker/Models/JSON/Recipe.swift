@@ -11,7 +11,6 @@ struct Recipe: Codable {
   
   let name: String                     // "apple"
   var imageName: String                // "apple.jpg"
-  var ingredients: [GroceryItem]
   var recipeSteps: [String]            // recipe steps
   var ingredientNames: [String]            // ingred names
 

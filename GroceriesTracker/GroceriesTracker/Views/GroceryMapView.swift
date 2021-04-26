@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 import MapKit
 
+// uses mapview, shows nearby grocery stores
+// user can also search other types of locations
 struct GroceryMapView: View {
   
   @ObservedObject var locationManager = LocationManager()

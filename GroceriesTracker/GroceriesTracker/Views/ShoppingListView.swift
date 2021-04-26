@@ -9,43 +9,8 @@ import Foundation
 import SwiftUI
 import Combine
 
-struct CounterList: View {
-  @State var counters = ["a","b","c"]
-  var body: some View {
-    NavigationView {
-      List {
-        ForEach(counters, id: \.self) { counter in
-          NavigationLink(destination: Text(counter)) {
-            CounterCell(counter: counter)
-          }
-        }
-      }
-      .buttonStyle(PlainButtonStyle())
-      .listStyle(GroupedListStyle())
-    }.navigationViewStyle(StackNavigationViewStyle())
-  }
-}
 
-struct CounterCell: View {
-  
-  @State var counter: String
-  @State var inc = 0
-  
-  var body: some View {
-    HStack {
-      Button(action: { self.inc += 1 }) {
-        Text("plus")
-      }
-      Button(action: { self.inc -= 1 }) {
-        Text("minus")
-      }
-      Text(" counter: \(counter) value: \(inc)")
-    }
-  }
-}
-
-
-// TODO QTY STEPPER
+// Shows grocery items (row view)
 struct GroceryItemRowView: View {
   
   var item: GroceryItem
@@ -59,25 +24,12 @@ struct GroceryItemRowView: View {
       Text(item.name).font(.system(size: 25, design: .serif))
       Spacer()
       Text(String(item.quantity)).font(.system(size: 15, design: .serif))
-      /*HStack{
-        Button(action: {
-            print("Edit button was tapped")
-        }) {
-            Image(systemName: "plus.circle")
-        }
-        Text(String(item.quantity))//.font(.system(size: 15, design: .serif))
-        Button(action: {
-            print("Edit button was tapped")
-        }) {
-            Image(systemName: "minus.circle")
-        }
-      }*/
     }
   }
   
 }
 
-// TODO QTY STEPPER
+// Shows grocery items (row view) - core data
 struct GroceryItemCoreDataRowView: View {
   
   var item: GroceryItem
@@ -92,6 +44,8 @@ struct GroceryItemCoreDataRowView: View {
       Text(item.name).font(.system(size: 25, design: .serif))
       Spacer()
       Text(String(dataItem.quantity)).font(.system(size: 15, design: .serif))
+      // commented out +/- buttons -> implemented in
+      // grocery item view instead
       /*HStack{
         Button(action: {
             print("Edit button was tapped")
@@ -111,10 +65,8 @@ struct GroceryItemCoreDataRowView: View {
 }
 
 
-// TODO: Implement slide to delete
-// TODO QTY STEPPER
+// shows shopping list contents - core data
 struct CoreDataShoppingListView: View {
-  //@Binding var shoppingList: [GroceryItem]
   
   @Binding var fridge: [BoughtItem]
   @Binding var freezer: [BoughtItem]
@@ -125,17 +77,7 @@ struct CoreDataShoppingListView: View {
     self._fridge = fridge
     self._freezer = freezer
     self._pantry = pantry
-    //NotificationView().setupNotification()
-    // Emerald
-    //UINavigationBar.appearance().barTintColor = UIColor(red: 80 / 255, green: 200 / 255, blue: 120 / 255, alpha: 1)
-    // pistachio
-    //UINavigationBar.appearance().barTintColor = UIColor(red: 147 / 255, green: 197 / 255, blue: 114 / 255, alpha: 1)
-    // celadon
-    //UINavigationBar.appearance().barTintColor = UIColor(red: 175 / 255, green: 225 / 255, blue: 175 / 255, alpha: 1)
-    // light green
     UINavigationBar.appearance().barTintColor = UIColor(red: 144 / 255, green: 238 / 255, blue: 144 / 255, alpha: 1)
-    //UINavigationBar.appearance().backgroundColor = .green
-    //UINavigationBar.appearance().tintColor = .green
   }
   
   @Environment(\.managedObjectContext) var context
@@ -163,45 +105,6 @@ struct CoreDataShoppingListView: View {
             NavigationLink(destination: GroceryItemCoreDataView(item: grocItem, dataItem: item), label: {
               GroceryItemCoreDataRowView(item: grocItem, dataItem: item)
             })
-            
-            /*ZStack {
-
-              HStack{
-                GroceryItemRowView(item: grocItem)
-                Button(action: {
-                    print("Edit button was tapped")
-                }) {
-                    Image(systemName: "plus.circle")
-                }
-                Text(String(item.quantity))//.font(.system(size: 15, design: .serif))
-                Button(action: {
-                    print("Edit button was tapped")
-                }) {
-                    Image(systemName: "minus.circle")
-                }
-                NavigationLink(destination: GroceryItemView(item: grocItem), label: {
-                  Button(action: {
-                      print("nav button was tapped")
-                  }) {
-                    Image(systemName: "arrowtriangle.right")
-                  }
-                  
-                })
-
-              }
-            }*/
-
-            /*var showGrocView = true
-            VStack {
-              GroceryItemRowView(item: grocItem)
-                .onTapGesture() {
-                  showGrocView.toggle()
-                  print("showGrocView.toggle()")
-                  
-                }
-              GroceryItemView(item: grocItem).isHidden(showGrocView)
-              
-            }*/
             
           }
           .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive))
@@ -244,26 +147,7 @@ struct CoreDataShoppingListView: View {
                                       //notifyDate.hour = 10
                                       //notifyDate.minute = 0
                                       NotificationView().setupAndFireNotification(date: notifyDate, item: groc.name!)
-
-                                      // let bought = BoughtItem(groceryItem: grocItem)
-                                      // print(bought)
-                                      // bought.convertToManagedObject()
                                       
-                                      /*do {
-                                        try MyGroceryTrackerCoreDataModel.context.save()
-                                      } catch {
-                                        print("Error saving item to core data \(error)")
-                                      }*/
-                                      
-                                      /*if grocItem.storageLocation == .Fridge {
-                                        fridge.append(bought)
-                                      } else if grocItem.storageLocation == .Freezer {
-                                        freezer.append(bought)
-                                      } else if grocItem.storageLocation == .Pantry {
-                                        pantry.append(bought)
-                                      }*/
-                              
-                                      //shoppingList.remove(at:grocIndex!)
                                       groc.onShoppingList = false
 
                                       do {
@@ -292,29 +176,15 @@ struct CoreDataShoppingListView: View {
                                     context.delete(groc)
                                     let itemIndex = itemsToEdit.firstIndex(of: item)
                                     itemsToEdit.remove(at:itemIndex!)
-                                    /*do {
-                                      try MyGroceryTrackerCoreDataModel.context.save()
-                                    } catch {
-                                      print("Error saving item to core data \(error)")
-                                    }*/
-                                    
-                                    //dataModel.assignStudent(student: username, toCourseClass: selectedClass)
+
                                   }
                                   self.isEditing.toggle()
-                                  /*do {
-                                    try MyGroceryTrackerCoreDataModel.context.save()
-                                  } catch {
-                                    print("Error saving item to core data \(error)")
-                                  }*/
+
                                 }
                               }).sheet(isPresented: self.$isAddSheetShowing, content: {
                                 AddShoppingListItemCoreDataView(isPresented: $isAddSheetShowing, name: $name)
                               })
               
-          /*.background(NavigationConfigurator { nc in
-              nc.navigationBar.barTintColor = .blue
-              nc.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.white]
-          })*/
         }
         
       }.edgesIgnoringSafeArea(.all)
@@ -383,7 +253,7 @@ extension Color {
 }
 
 
-
+// shows shopping list contents - non core data
 struct ShoppingListView: View {
   @Binding var shoppingList: [GroceryItem]
   
@@ -400,16 +270,6 @@ struct ShoppingListView: View {
   
   var dataModel = testModel
   
-  /*init() {
-    self.shoppingList = shoppingList
-    UINavigationBar.appearance().backgroundColor = .systemPink
-
-    UINavigationBar.appearance().largeTitleTextAttributes = [
-        .foregroundColor: UIColor.white,
-        .font : UIFont(name:"Helvetica Neue", size: 40)!]
-
-  }*/
-  
   var body: some View {
     NavigationView {
       ZStack {
@@ -420,7 +280,6 @@ struct ShoppingListView: View {
               GroceryItemRowView(item: item)
             })
           }
-          //.environment(\.editMode, self.$isEditMode)
           .environment(\.editMode, .constant(self.isEditing ? EditMode.active : EditMode.inactive))
           .navigationBarTitleDisplayMode(.inline)
           //.navigationTitle("Shopping List")
@@ -462,8 +321,6 @@ struct ShoppingListView: View {
                                       let itemIndex = itemsToAdd.firstIndex(of: item)
                                       itemsToAdd.remove(at:itemIndex!)
                                       
-                                      
-                                      //dataModel.assignStudent(student: username, toCourseClass: selectedClass)
                                     }
                                     self.isEditing.toggle()
                                   }
@@ -476,7 +333,7 @@ struct ShoppingListView: View {
                                     print(itemsToAdd)
 
                                     let grocIndex = shoppingList.firstIndex(where: { $0.name ==  item})
-                                    /*let groc = shoppingList[grocIndex!]
+                                    let groc = shoppingList[grocIndex!]
                                     let bought = BoughtItem(groceryItem: groc)
                                     if groc.storageLocation == .Fridge {
                                       fridge.append(bought)
@@ -484,14 +341,12 @@ struct ShoppingListView: View {
                                       freezer.append(bought)
                                     } else if groc.storageLocation == .Pantry {
                                       pantry.append(bought)
-                                    }*/
+                                    }
                             
                                     shoppingList.remove(at:grocIndex!)
                                     let itemIndex = itemsToAdd.firstIndex(of: item)
                                     itemsToAdd.remove(at:itemIndex!)
                                     
-                                    
-                                    //dataModel.assignStudent(student: username, toCourseClass: selectedClass)
                                   }
                                   self.isEditing.toggle()
                                 }
@@ -505,3 +360,38 @@ struct ShoppingListView: View {
   }
 }
 
+// not needed - experimenting
+struct CounterList: View {
+  @State var counters = ["a","b","c"]
+  var body: some View {
+    NavigationView {
+      List {
+        ForEach(counters, id: \.self) { counter in
+          NavigationLink(destination: Text(counter)) {
+            CounterCell(counter: counter)
+          }
+        }
+      }
+      .buttonStyle(PlainButtonStyle())
+      .listStyle(GroupedListStyle())
+    }.navigationViewStyle(StackNavigationViewStyle())
+  }
+}
+
+struct CounterCell: View {
+  
+  @State var counter: String
+  @State var inc = 0
+  
+  var body: some View {
+    HStack {
+      Button(action: { self.inc += 1 }) {
+        Text("plus")
+      }
+      Button(action: { self.inc -= 1 }) {
+        Text("minus")
+      }
+      Text(" counter: \(counter) value: \(inc)")
+    }
+  }
+}

@@ -218,9 +218,9 @@
 			isa = PBXGroup;
 			children = (
 				ECBFF5DA261D158B00FBDCDE /* MyGroceryTrackerCoreDataModel.swift */,
-				ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */,
 				ECBFF5E7261D17E400FBDCDE /* GroceryItem+CoreData.swift */,
 				ECBFF5EC261D180C00FBDCDE /* Recipe+CoreData.swift */,
+				ECBFF5E2261D17C100FBDCDE /* BoughtItem+CoreData.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
